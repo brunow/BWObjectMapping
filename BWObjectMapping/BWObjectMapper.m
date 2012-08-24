@@ -196,11 +196,8 @@
 - (id)objectFromJSON:(id)JSON existingObject:(id)object {
     __block id parsedObject = nil;
     [self.mappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
-        NSString *rootKeyPath = objectMapping.rootKeyPath;
-        id rootKeyPathObject = [JSON objectForKey:rootKeyPath];
-        
-        if (nil != rootKeyPathObject) {
-            parsedObject = [self objectFromJSON:rootKeyPathObject withMapping:objectMapping existingObject:object];
+        if (objectMapping.objectClass == [object class]) {
+            parsedObject = [self objectFromJSON:JSON withMapping:objectMapping existingObject:object];
             
             *stop = YES;
         }
