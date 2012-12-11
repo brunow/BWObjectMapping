@@ -55,6 +55,10 @@
     if (self) {
         self.mappings = [NSMutableDictionary dictionary];
         self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+        
+        self.objectBlock = ^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
+            return [[objectClass alloc] init];
+        };
     }
     return self;
 }

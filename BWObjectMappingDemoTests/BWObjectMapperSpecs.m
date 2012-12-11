@@ -38,9 +38,9 @@ describe(@"mapping", ^{
                 [[BWObjectMapper shared] registerMapping:objectMapping withRootKeyPath:@"comment"];
             }];
             
-            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
-                return [[objectClass alloc] init];
-            }];
+//            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
+//                return [[objectClass alloc] init];
+//            }];
         });
         
         it(@"should map the right object mapping", ^{
