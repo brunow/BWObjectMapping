@@ -220,7 +220,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping {
     [mapping.attributeMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectAttributeMapping *attributeMapping, BOOL *stop) {
-        [[BWObjectValueMapper shared] setValue:[dict objectForKey:attributeMapping.keyPath]
+        [[BWObjectValueMapper shared] setValue:[dict valueForKeyPath:attributeMapping.keyPath]
                                     forKeyPath:attributeMapping.attribute
                              withAttributeMapping:attributeMapping
                                      forObject:object];
