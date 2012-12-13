@@ -84,6 +84,10 @@ If you don't use Rails date format you have two options:
 
 **Copy BWObjectMapper dir** into your **project**.
 
+Or with **Cocoapods**
+
+	pod 'BWObjectMapper', :git => "https://github.com/brunow/BWObjectMapper.git", :tag => "0.1.0"
+
 ## ARC
 
 BWObjectMapper is ARC only.
