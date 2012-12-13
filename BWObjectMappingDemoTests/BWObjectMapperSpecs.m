@@ -37,10 +37,6 @@ describe(@"mapping", ^{
                 
                 [[BWObjectMapper shared] registerMapping:objectMapping withRootKeyPath:@"comment"];
             }];
-            
-//            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
-//                return [[objectClass alloc] init];
-//            }];
         });
         
         it(@"should map the right object mapping", ^{
@@ -118,6 +114,20 @@ describe(@"mapping", ^{
             NSString *expected = CUSTOM_VALUE_VALUE;
             
             [[comment.customValue should] equal:expected];
+        });
+        
+        it(@"should call didMapObject block", ^{
+            __block BOOL hasCalledDidMapObjectBlock = NO;
+            BWObjectMapper *mapper = [BWObjectMapper shared];
+            
+            [mapper didMapObjectWithBlock:^(id object) {
+                hasCalledDidMapObjectBlock = YES;
+            }];
+            
+            [mapper objectFromJSON:nil withObjectClass:[Comment class]];
+            [mapper setDidMapObjectBlock:nil];
+            
+            [[theValue(hasCalledDidMapObjectBlock) should] equal:theValue(YES)];
         });
         
     });
