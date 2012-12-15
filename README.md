@@ -17,7 +17,9 @@ Small library that parse JSON and map it to any object, works with NSManagedObje
 	[BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
 		[mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
 		[mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
-		[mapping mapKeyPath:@"created_at" toAttribute:@"createdAt"];                
+		[mapping mapAttributeFromArray:@[@"name"]];
+		[mapping mapAttributeFromDictionary:@{@"created_at" : @"createdAt"}];    
+      
 		[[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
 	}];
 
@@ -86,7 +88,7 @@ If you don't use Rails date format you have two options:
 
 Or with **Cocoapods**
 
-	pod 'BWObjectMapper', :git => "https://github.com/brunow/BWObjectMapper.git", :tag => "0.1.0"
+	pod 'BWObjectMapper', :git => "https://github.com/brunow/BWObjectMapper.git", :tag => "0.2.0"
 
 ## ARC
 
