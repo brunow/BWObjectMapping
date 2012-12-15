@@ -34,6 +34,10 @@
 
 - (void)mapPrimaryKeyAttribute:(NSString *)primaryKey toAttribute:(NSString *)attribute;
 
+- (void)mapAttributeFromDictionary:(NSDictionary *)attributes;
+
+- (void)mapAttributeFromArray:(NSArray *)attributes;
+
 - (void)mapKeyPath:(NSString *)keyPath toAttribute:(NSString *)attribute;
 
 - (void)mapKeyPath:(NSString *)keyPath toAttribute:(NSString *)attribute dateFormat:(NSString *)dateFormat;

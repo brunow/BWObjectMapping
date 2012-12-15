@@ -130,6 +130,15 @@ describe(@"mapping", ^{
             [[theValue(hasCalledDidMapObjectBlock) should] equal:theValue(YES)];
         });
         
+        it(@"should add attribute mapping from array and dictionary", ^{
+            [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+                [mapping mapAttributeFromArray:@[@"name"]];
+                [mapping mapAttributeFromDictionary:@{@"created_at" : @"createdAt"}];
+                
+                [[theValue([mapping.attributeMappings count]) should] equal:theValue(2)];
+            }];
+        });
+        
     });
     
     context(@"Core data object", ^{

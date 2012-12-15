@@ -102,6 +102,22 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)mapAttributeFromArray:(NSArray *)attributes {
+    [attributes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self mapKeyPath:obj toAttribute:obj];
+    }];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)mapAttributeFromDictionary:(NSDictionary *)attributes {
+    [attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self mapKeyPath:key toAttribute:obj];
+    }];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hasMany:(Class)relationClass withRootKeyPath:(NSString *)relationKeyPath {
     
 }
