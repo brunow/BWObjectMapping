@@ -23,12 +23,6 @@ describe(@"mapping", ^{
                 [mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
                 [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
                 [mapping mapKeyPath:@"created_at" toAttribute:@"createdAt"];
-                
-//                [mapping hasMany:[Comment class] withRootKeyPath:@"comments"];
-//                [mapping hasOne:[Comment class] withRootKeyPath:@"comment"];
-//                [mapping hasMany:[Comment class] withRelationIDKeyPath:@"user_id"];
-//                [mapping hasMany:[Comment class]];
-                
                 [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
             }];
             
