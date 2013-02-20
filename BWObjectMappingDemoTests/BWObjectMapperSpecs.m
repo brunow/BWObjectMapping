@@ -206,6 +206,94 @@ describe(@"mapping", ^{
         
     });
     
+    context(@"Custom conversion to enum", ^{
+        
+        context(@"when is a male", ^{
+            
+            __block Person *person;
+            __block NSDictionary *JSON;
+            __block BWObjectMapping *personMapping;
+            
+            beforeAll(^{
+                
+                personMapping = [BWObjectMapping mappingForObject:[Person class] block:^(BWObjectMapping *mapping) {
+                    [mapping mapKeyPath:@"person.name" toAttribute:@"name"];
+                    [mapping mapKeyPath:@"person.gender" toAttribute:@"gender" valueBlock:^id(id value, id object) {
+                        if ([value isEqualToString:@"male"]) {
+                            return @(GenderMale);
+                        } else {
+                            return @(GenderFemale);
+                        }
+                    }];
+                }];
+                
+            });
+            
+            beforeEach(^{
+                
+                JSON = @{ @"person" : @{ @"name" : @"Lucas", @"gender": @"male" } };
+                person = [[BWObjectMapper shared] objectFromJSON:JSON withMapping:personMapping];
+                
+            });
+            
+            specify(^{
+                [[person should] beNonNil];
+            });
+            
+            specify(^{
+                [[person.name should] equal:[[JSON objectForKey:@"person"] objectForKey:@"name"]];
+            });
+            
+            specify(^{
+                [[theValue(person.gender) should] equal:theValue(GenderMale)];
+            });
+            
+        });
+        
+        context(@"when is female", ^{
+            
+            __block Person *person;
+            __block NSDictionary *JSON;
+            __block BWObjectMapping *personMapping;
+            
+            beforeAll(^{
+                
+                personMapping = [BWObjectMapping mappingForObject:[Person class] block:^(BWObjectMapping *mapping) {
+                    [mapping mapKeyPath:@"person.name" toAttribute:@"name"];
+                    [mapping mapKeyPath:@"person.gender" toAttribute:@"gender" valueBlock:^id(id value, id object) {
+                        if ([value isEqualToString:@"male"]) {
+                            return @(GenderMale);
+                        } else {
+                            return @(GenderFemale);
+                        }
+                    }];
+                }];
+                
+            });
+            
+            beforeEach(^{
+                
+                JSON = @{ @"person" : @{ @"name" : @"Jenny", @"gender": @"female" } };
+                person = [[BWObjectMapper shared] objectFromJSON:JSON withMapping:personMapping];
+                
+            });
+            
+            specify(^{
+                [[person should] beNonNil];
+            });
+            
+            specify(^{
+                [[person.name should] equal:[[JSON objectForKey:@"person"] objectForKey:@"name"]];
+            });
+            
+            specify(^{
+                [[theValue(person.gender) should] equal:theValue(GenderFemale)];
+            });
+            
+        });
+        
+    });
+    
     context(@"Has one relation", ^{
         
         __block Car *car;
