@@ -118,14 +118,14 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath
+- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping forKeyPath:(NSString *)keyPath
 {
     [self.hasManyMappings setValue:mapping forKeyPath:keyPath];
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath
+- (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping forKeyPath:(NSString *)keyPath
 {
     [self.hasOneMappings setObject:mapping forKey:keyPath];
 }

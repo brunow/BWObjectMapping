@@ -15,7 +15,7 @@ SPEC_BEGIN(BWObjectMappingSpec)
 
 describe(@"BWObjectMapping", ^{
    
-    describe(@"#hasOneWithRelationMapping:fromKeyPath:", ^{
+    describe(@"#hasOneWithRelationMapping:forKeyPath:", ^{
         
         __block BWObjectMapping *mapping;
         
@@ -24,7 +24,7 @@ describe(@"BWObjectMapping", ^{
         });
         
         specify(^{
-            [[mapping should] respondToSelector:@selector(hasOneWithRelationMapping:fromKeyPath:)];
+            [[mapping should] respondToSelector:@selector(hasOneWithRelationMapping:forKeyPath:)];
         });
         
         specify(^{
@@ -37,7 +37,7 @@ describe(@"BWObjectMapping", ^{
         
     });
     
-    describe(@"#hasManyWithRelationMapping:fromKeyPath", ^{
+    describe(@"#hasManyWithRelationMapping:forKeyPath", ^{
         
         __block BWObjectMapping *mapping;
         
@@ -46,7 +46,7 @@ describe(@"BWObjectMapping", ^{
         });
         
         specify(^{
-            [[mapping should] respondToSelector:@selector(hasManyWithRelationMapping:fromKeyPath:)];
+            [[mapping should] respondToSelector:@selector(hasManyWithRelationMapping:forKeyPath:)];
         });
         
         specify(^{
