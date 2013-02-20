@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C69C256616D453140008038E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C69C256516D453140008038E /* Default-568h@2x.png */; };
+		C69C256916D4534E0008038E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256816D4534E0008038E /* Person.m */; };
+		C69C256C16D466B40008038E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256B16D466B40008038E /* Car.m */; };
+		C69C256F16D46BA00008038E /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256E16D46BA00008038E /* Engine.m */; };
+		C69C257116D471370008038E /* BWObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257016D471370008038E /* BWObjectMappingSpec.m */; };
+		C69C257416D4729A0008038E /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257316D4729A0008038E /* MappingProvider.m */; };
+		C69C257916D4FAA30008038E /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257816D4FAA30008038E /* Wheel.m */; };
 		E7018D4E15C6492600D3ADEE /* BWObjectValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */; };
 		E7018D5515C65FB000D3ADEE /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D5415C65FB000D3ADEE /* Entity.m */; };
 		E7B6880F15BAA9E700002F08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6880E15BAA9E700002F08 /* UIKit.framework */; };
@@ -42,6 +49,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C69C256516D453140008038E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		C69C256716D4534E0008038E /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		C69C256816D4534E0008038E /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		C69C256A16D466B40008038E /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		C69C256B16D466B40008038E /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
+		C69C256D16D46BA00008038E /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
+		C69C256E16D46BA00008038E /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Engine.m; sourceTree = "<group>"; };
+		C69C257016D471370008038E /* BWObjectMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectMappingSpec.m; sourceTree = "<group>"; };
+		C69C257216D4729A0008038E /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
+		C69C257316D4729A0008038E /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
+		C69C257716D4FAA30008038E /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
+		C69C257816D4FAA30008038E /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
 		E7018D4C15C6492600D3ADEE /* BWObjectValueMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWObjectValueMapper.h; sourceTree = "<group>"; };
 		E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectValueMapper.m; sourceTree = "<group>"; };
 		E7018D5315C65FB000D3ADEE /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
@@ -140,15 +159,25 @@
 		E7B6881615BAA9E700002F08 /* BWObjectMappingDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E7B68A2815BC98A100002F08 /* User.m */,
-				E7B68A2915BC98A100002F08 /* User.h */,
-				E7B68A0B15BC5DC900002F08 /* Comment.h */,
-				E7B68A0C15BC5DC900002F08 /* Comment.m */,
 				E7B6881F15BAA9E700002F08 /* AppDelegate.h */,
 				E7B6882015BAA9E700002F08 /* AppDelegate.m */,
+				C69C256A16D466B40008038E /* Car.h */,
+				C69C256B16D466B40008038E /* Car.m */,
+				E7B68A0B15BC5DC900002F08 /* Comment.h */,
+				E7B68A0C15BC5DC900002F08 /* Comment.m */,
 				E7B6882215BAA9E700002F08 /* BWObjectMappingDemo.xcdatamodeld */,
+				C69C256D16D46BA00008038E /* Engine.h */,
+				C69C256E16D46BA00008038E /* Engine.m */,
 				E7018D5315C65FB000D3ADEE /* Entity.h */,
 				E7018D5415C65FB000D3ADEE /* Entity.m */,
+				C69C256716D4534E0008038E /* Person.h */,
+				C69C256816D4534E0008038E /* Person.m */,
+				E7B68A2915BC98A100002F08 /* User.h */,
+				E7B68A2815BC98A100002F08 /* User.m */,
+				C69C257716D4FAA30008038E /* Wheel.h */,
+				C69C257816D4FAA30008038E /* Wheel.m */,
+				C69C257216D4729A0008038E /* MappingProvider.h */,
+				C69C257316D4729A0008038E /* MappingProvider.m */,
 				E7B6881715BAA9E700002F08 /* Supporting Files */,
 			);
 			path = BWObjectMappingDemo;
@@ -157,6 +186,7 @@
 		E7B6881715BAA9E700002F08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C69C256516D453140008038E /* Default-568h@2x.png */,
 				E7B6881815BAA9E700002F08 /* BWObjectMappingDemo-Info.plist */,
 				E7B6881915BAA9E700002F08 /* InfoPlist.strings */,
 				E7B6881C15BAA9E700002F08 /* main.m */,
@@ -170,6 +200,7 @@
 			children = (
 				E7B6883315BAA9E700002F08 /* Supporting Files */,
 				E7B689FF15BAB69000002F08 /* BWObjectMapperSpecs.m */,
+				C69C257016D471370008038E /* BWObjectMappingSpec.m */,
 			);
 			path = BWObjectMappingDemoTests;
 			sourceTree = "<group>";
@@ -244,7 +275,7 @@
 		E7B6880115BAA9E700002F08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = E7B6880415BAA9E700002F08 /* Build configuration list for PBXProject "BWObjectMappingDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -270,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7B6881B15BAA9E700002F08 /* InfoPlist.strings in Resources */,
+				C69C256616D453140008038E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +346,11 @@
 				E7B68A2A15BC98A100002F08 /* User.m in Sources */,
 				E7018D4E15C6492600D3ADEE /* BWObjectValueMapper.m in Sources */,
 				E7018D5515C65FB000D3ADEE /* Entity.m in Sources */,
+				C69C256916D4534E0008038E /* Person.m in Sources */,
+				C69C256C16D466B40008038E /* Car.m in Sources */,
+				C69C256F16D46BA00008038E /* Engine.m in Sources */,
+				C69C257416D4729A0008038E /* MappingProvider.m in Sources */,
+				C69C257916D4FAA30008038E /* Wheel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7B68A0015BAB69000002F08 /* BWObjectMapperSpecs.m in Sources */,
+				C69C257116D471370008038E /* BWObjectMappingSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +399,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -387,6 +429,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

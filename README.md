@@ -81,6 +81,105 @@ If you don't use Rails date format you have two options:
 
 	[[BWObjectMapper shared] setDefaultDateFormat:@""];	
 
+## Handling relation
+
+Let's suppose you have a JSON like this:
+
+```JSON
+
+{
+    "model": "HB20",
+    "year": "2013",
+    "engine": {
+        "type": "v8"
+    },
+    "wheels": [
+        {
+            "id": "123123123",
+            "type": "16"
+        },
+        {
+            "id": "1234",
+            "type": "17"
+        }
+    ]
+}
+
+```
+
+* First define your models:
+
+```objective-c
+
+@interface Car : NSObject
+
+@property (nonatomic, copy)   NSString *model;
+@property (nonatomic, copy)   NSString *year;
+@property (nonatomic, strong) Engine   *engine;
+@property (nonatomic, strong) NSArray  *wheels;
+
+@end
+
+@interface Engine : NSObject
+
+@property (nonatomic, copy) NSString *type;
+
+@end
+
+@interface Wheel : NSObject
+
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *size;
+
+@end
+
+```
+
+* After this what you need to do is define their mappings in somewhere like this:
+
+```objective-c
+
+#import "MappingProvider.h"
+#import "Car.h"
+#import "Engine.h"
+#import "Wheel.h"
+
+@implementation MappingProvider
+
++ (BWObjectMapping *)carMapping
+{
+    return [BWObjectMapping mappingForObject:[Car class] block:^(BWObjectMapping *mapping) {
+        [mapping mapAttributeFromArray:@[@"model", @"year"]];
+        [mapping hasOneWithRelationMapping:[self engineMapping] fromKeyPath:@"engine"];
+        [mapping hasManyWithRelationMapping:[self wheelMapping] fromKeyPath:@"wheels"];
+    }];
+}
+
++ (BWObjectMapping *)engineMapping
+{
+    return [BWObjectMapping mappingForObject:[Engine class] block:^(BWObjectMapping *mapping) {
+        [mapping mapAttributeFromArray:@[@"type"]];
+    }];
+}
+
++ (BWObjectMapping *)wheelMapping
+{
+    return [BWObjectMapping mappingForObject:[Wheel class] block:^(BWObjectMapping *mapping) {
+        [mapping mapAttributeFromArray:@[@"size"]];
+        [mapping mapAttributeFromDictionary:@{
+            @"id": @"identifier"
+         }];
+    }];
+}
+
+```
+
+* And to instanciate the root object you can do this:
+
+```objective-c
+
+Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingProvider carMapping]];
+```
 
 ## Installation
 
@@ -93,10 +192,6 @@ Or with **Cocoapods**
 ## ARC
 
 BWObjectMapper is ARC only.
-
-## Todo
-
-- Handle relation (Has many, has one, …)
 
 ## Contact
 
