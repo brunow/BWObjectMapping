@@ -39,8 +39,9 @@
     self = [self init];
     if (self) {
         self.objectClass = objectClass;
-        _attributeMappings = [[NSMutableDictionary alloc] init];
+        _attributeMappings = [NSMutableDictionary dictionary];
         _hasOneMappings = [NSMutableDictionary dictionary];
+        _hasManyMappings = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -119,6 +120,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hasMany:(Class)relationClass withRootKeyPath:(NSString *)relationKeyPath {
     
+}
+
+- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath
+{
+    [self.hasManyMappings setValue:mapping forKeyPath:keyPath];
 }
 
 

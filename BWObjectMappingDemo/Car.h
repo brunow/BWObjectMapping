@@ -14,6 +14,7 @@
 
 @property (nonatomic, copy)   NSString *model;
 @property (nonatomic, copy)   NSString *year;
-@property (nonatomic, strong) Engine *engine;
+@property (nonatomic, strong) Engine   *engine;
+@property (nonatomic, strong) NSArray  *wheels;
 
 @end

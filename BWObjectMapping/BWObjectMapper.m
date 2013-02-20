@@ -231,6 +231,11 @@
         [object setValue:result forKeyPath:key];
     }];
     
+    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
+        NSArray *result = [self objectsFromJSON:[dict objectForKey:key] withMapping:objectMapping];
+        [object setValue:result forKeyPath:key];
+    }];
+    
     if (nil != self.didMapObjectBlock) {
         self.didMapObjectBlock(object);
     }

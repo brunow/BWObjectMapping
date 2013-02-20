@@ -13,6 +13,7 @@
 		C69C256F16D46BA00008038E /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256E16D46BA00008038E /* Engine.m */; };
 		C69C257116D471370008038E /* BWObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257016D471370008038E /* BWObjectMappingSpec.m */; };
 		C69C257416D4729A0008038E /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257316D4729A0008038E /* MappingProvider.m */; };
+		C69C257916D4FAA30008038E /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257816D4FAA30008038E /* Wheel.m */; };
 		E7018D4E15C6492600D3ADEE /* BWObjectValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */; };
 		E7018D5515C65FB000D3ADEE /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D5415C65FB000D3ADEE /* Entity.m */; };
 		E7B6880F15BAA9E700002F08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6880E15BAA9E700002F08 /* UIKit.framework */; };
@@ -58,6 +59,8 @@
 		C69C257016D471370008038E /* BWObjectMappingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectMappingSpec.m; sourceTree = "<group>"; };
 		C69C257216D4729A0008038E /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
 		C69C257316D4729A0008038E /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
+		C69C257716D4FAA30008038E /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
+		C69C257816D4FAA30008038E /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
 		E7018D4C15C6492600D3ADEE /* BWObjectValueMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWObjectValueMapper.h; sourceTree = "<group>"; };
 		E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectValueMapper.m; sourceTree = "<group>"; };
 		E7018D5315C65FB000D3ADEE /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				C69C256816D4534E0008038E /* Person.m */,
 				E7B68A2915BC98A100002F08 /* User.h */,
 				E7B68A2815BC98A100002F08 /* User.m */,
+				C69C257716D4FAA30008038E /* Wheel.h */,
+				C69C257816D4FAA30008038E /* Wheel.m */,
 				C69C257216D4729A0008038E /* MappingProvider.h */,
 				C69C257316D4729A0008038E /* MappingProvider.m */,
 				E7B6881715BAA9E700002F08 /* Supporting Files */,
@@ -345,6 +350,7 @@
 				C69C256C16D466B40008038E /* Car.m in Sources */,
 				C69C256F16D46BA00008038E /* Engine.m in Sources */,
 				C69C257416D4729A0008038E /* MappingProvider.m in Sources */,
+				C69C257916D4FAA30008038E /* Wheel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

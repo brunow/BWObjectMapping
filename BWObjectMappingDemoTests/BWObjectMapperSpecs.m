@@ -7,6 +7,7 @@
 #import "Entity.h"
 #import "Car.h"
 #import "Engine.h"
+#import "Wheel.h"
 #import "MappingProvider.h"
 #import "AppDelegate.h"
 
@@ -231,6 +232,41 @@ describe(@"mapping", ^{
         
         specify(^{
             [[car.engine.type should] equal:[[carJSON objectForKey:@"engine"] objectForKey:@"type"]];
+        });
+        
+    });
+    
+    context(@"Has many relation", ^{
+        
+        __block Car *car;
+        __block NSDictionary *carWithWheelsJSON;
+        
+        beforeEach(^{
+            
+            carWithWheelsJSON = @{ @"model" : @"HB20",
+                                   @"year" : @"2013",
+                                   @"engine" : @{ @"type" : @"v8" },
+                                   @"wheels" : @[ @{ @"id" : @"123123123", @"type" : @"16" }, @{ @"id" : @"1234", @"type" : @"17" } ]
+                                };
+            
+            car = [[BWObjectMapper shared] objectFromJSON:carWithWheelsJSON withMapping:[MappingProvider carMapping]];
+            
+        });
+        
+        specify(^{
+            [[car should] beNonNil];
+        });
+        
+        specify(^{
+            [[car.wheels should] beNonNil];
+        });
+        
+        specify(^{
+            [[car.wheels should] beNonNil];
+        });
+        
+        specify(^{
+            [[theValue([car.wheels count]) should] beGreaterThan:theValue(0)];
         });
         
     });

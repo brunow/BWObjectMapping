@@ -37,6 +37,28 @@ describe(@"BWObjectMapping", ^{
         
     });
     
+    describe(@"#hasManyWithRelationMapping:fromKeyPath", ^{
+        
+        __block BWObjectMapping *mapping;
+        
+        beforeEach(^{
+            mapping = [MappingProvider carMapping];
+        });
+        
+        specify(^{
+            [[mapping should] respondToSelector:@selector(hasManyWithRelationMapping:fromKeyPath:)];
+        });
+        
+        specify(^{
+            [[mapping should] respondToSelector:@selector(hasManyMappings)];
+        });
+        
+        specify(^{
+            [[mapping.hasManyMappings should] beNonNil];
+        });
+        
+    });
+    
 });
 
 SPEC_END

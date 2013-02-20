@@ -9,6 +9,7 @@
 #import "MappingProvider.h"
 #import "Car.h"
 #import "Engine.h"
+#import "Wheel.h"
 
 @implementation MappingProvider
 
@@ -17,6 +18,7 @@
     return [BWObjectMapping mappingForObject:[Car class] block:^(BWObjectMapping *mapping) {
         [mapping mapAttributeFromArray:@[@"model", @"year"]];
         [mapping hasOneWithRelationMapping:[self engineMapping] fromKeyPath:@"engine"];
+        [mapping hasManyWithRelationMapping:[self wheelMapping] fromKeyPath:@"wheels"];
     }];
 }
 
@@ -24,6 +26,16 @@
 {
     return [BWObjectMapping mappingForObject:[Engine class] block:^(BWObjectMapping *mapping) {
         [mapping mapAttributeFromArray:@[@"type"]];
+    }];
+}
+
++ (BWObjectMapping *)wheelMapping
+{
+    return [BWObjectMapping mappingForObject:[Wheel class] block:^(BWObjectMapping *mapping) {
+        [mapping mapAttributeFromArray:@[@"size"]];
+        [mapping mapAttributeFromDictionary:@{
+            @"id": @"identifier"
+         }];
     }];
 }
 

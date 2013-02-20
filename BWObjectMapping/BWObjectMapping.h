@@ -26,6 +26,7 @@
 @property (nonatomic, assign) Class objectClass;
 @property (nonatomic, readonly, strong) NSMutableDictionary *attributeMappings;
 @property (nonatomic, readonly, strong) NSMutableDictionary *hasOneMappings;
+@property (nonatomic, readonly, strong) NSMutableDictionary *hasManyMappings;
 @property (nonatomic, strong) BWObjectAttributeMapping *primaryKeyAttribute;
 @property (nonatomic, strong) NSString *rootKeyPath;
 
@@ -52,5 +53,7 @@
 - (void)hasOne:(Class)relationClass withRootKeyPath:(NSString *)relationKeyPath;
 
 - (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath;
+
+- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath;
 
 @end
