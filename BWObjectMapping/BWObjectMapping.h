@@ -48,10 +48,6 @@
        toAttribute:(NSString *)attribute
         valueBlock:(BWObjectMappingValueBlock)valueBlock;
 
-- (void)hasMany:(Class)relationClass withRootKeyPath:(NSString *)relationKeyPath;
-
-- (void)hasOne:(Class)relationClass withRootKeyPath:(NSString *)relationKeyPath;
-
 - (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath;
 
 - (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath;

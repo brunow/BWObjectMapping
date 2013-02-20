@@ -118,10 +118,6 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)hasMany:(Class)relationClass withRootKeyPath:(NSString *)relationKeyPath {
-    
-}
-
 - (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath
 {
     [self.hasManyMappings setValue:mapping forKeyPath:keyPath];
@@ -129,10 +125,6 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)hasOne:(Class)relationClass withRootKeyPath:(NSString *)relationKeyPath {
-    
-}
-
 - (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath
 {
     [self.hasOneMappings setObject:mapping forKey:keyPath];
