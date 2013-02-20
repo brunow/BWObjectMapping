@@ -193,6 +193,10 @@ Or with **Cocoapods**
 
 BWObjectMapper is ARC only.
 
+## Thanks
+
+Big thanks to [lucasmedeirosleite ](https://github.com/lucasmedeirosleite) that added hasMany and hasOne relation.
+
 ## Contact
 
 Bruno Wernimont
