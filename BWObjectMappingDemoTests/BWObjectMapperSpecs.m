@@ -3,7 +3,11 @@
 #import "BWObjectMapper.h"
 #import "User.h"
 #import "Comment.h"
+#import "Person.h"
 #import "Entity.h"
+#import "Car.h"
+#import "Engine.h"
+#import "MappingProvider.h"
 #import "AppDelegate.h"
 
 #define CUSTOM_VALUE_VALUE @"customValue"
@@ -37,6 +41,7 @@ describe(@"mapping", ^{
                 
                 [[BWObjectMapper shared] registerMapping:objectMapping withRootKeyPath:@"comment"];
             }];
+            
         });
         
         it(@"should map the right object mapping", ^{
@@ -137,6 +142,101 @@ describe(@"mapping", ^{
                 
                 [[theValue([mapping.attributeMappings count]) should] equal:theValue(2)];
             }];
+        });
+        
+    });
+    
+    context(@"Nested Attributes", ^{
+        
+        __block Person *person;
+        __block NSDictionary *JSON;
+        __block BWObjectMapping *personMapping;
+        
+        beforeAll(^{
+            
+            personMapping = [BWObjectMapping mappingForObject:[Person class] block:^(BWObjectMapping *mapping) {
+                [mapping mapKeyPath:@"person.name" toAttribute:@"name"];
+                [mapping mapKeyPath:@"person.contact.email" toAttribute:@"email"];
+                [mapping mapKeyPath:@"person.contact.others.skype" toAttribute:@"skype"];
+                [mapping mapKeyPath:@"person.contact.phones" toAttribute:@"phones"];
+                [mapping mapKeyPath:@"person.address.location" toAttribute:@"location"];
+            }];
+            
+        });
+        
+        beforeEach(^{
+            
+            JSON = @{ @"person" : @{ @"name" : @"Lucas",
+                                     @"contact" : @{
+                                             @"email" : @"lucastoc@gmail.com",
+                                             @"phones" : @[ @"(12)1233-1333", @"(85)12331233" ],
+                                             @"others" : @{ @"skype" : @"aspmedeiros"}
+                                             },
+                                     @"address" : @{
+                                             @"location" : @{ @"lat": @(-18.123123123), @"long" : @(3.1123123123) }
+                                             }
+                                     }
+                      };
+            
+            person = [[BWObjectMapper shared] objectFromJSON:JSON withMapping:personMapping];
+            
+        });
+        
+        specify(^{
+            [[person should] beNonNil];
+        });
+        
+        specify(^{
+            [[person.name should] equal:[[JSON objectForKey:@"person"] objectForKey:@"name"]];
+        });
+        
+        specify(^{
+            [[person.email should] equal:[[[JSON objectForKey:@"person"] objectForKey:@"contact"] objectForKey:@"email"]];
+        });
+        
+        specify(^{
+            [[person.skype should] equal:[[[[JSON objectForKey:@"person"] objectForKey:@"contact"] objectForKey:@"others"] objectForKey:@"skype"]];
+        });
+        
+        specify(^{
+            int phonesCount = [person.phones count];
+            int expectedPhoneCount = [[[[JSON objectForKey:@"person"] objectForKey:@"contact"] objectForKey:@"phones"] count];
+            [[theValue(phonesCount) should] equal:theValue(expectedPhoneCount)];
+        });
+        
+        specify(^{
+            [[person.location should] equal:[[[JSON objectForKey:@"person"] objectForKey:@"address"] objectForKey:@"location"]];
+        });
+        
+        
+    });
+    
+    context(@"Has one relation", ^{
+        
+        __block Car *car;
+        __block NSDictionary *carJSON;
+        
+        beforeEach(^{
+            
+            carJSON = @{ @"model" : @"HB20",
+                      @"year" : @"2013",
+                      @"engine" : @{ @"type" : @"v8" }
+                      };
+            
+            car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingProvider carMapping]];
+            
+        });
+        
+        specify(^{
+            [[car should] beNonNil];
+        });
+        
+        specify(^{
+            [[car.engine should] beNonNil];
+        });
+        
+        specify(^{
+            [[car.engine.type should] equal:[[carJSON objectForKey:@"engine"] objectForKey:@"type"]];
         });
         
     });

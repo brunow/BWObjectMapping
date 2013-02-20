@@ -25,8 +25,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface BWObjectMapping ()
 
-@property (nonatomic, strong) NSDictionary *mappingDictionary;
-
 @end
 
 
@@ -42,6 +40,7 @@
     if (self) {
         self.objectClass = objectClass;
         _attributeMappings = [[NSMutableDictionary alloc] init];
+        _hasOneMappings = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -128,6 +127,10 @@
     
 }
 
+- (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping fromKeyPath:(NSString *)keyPath
+{
+    [self.hasOneMappings setObject:mapping forKey:keyPath];
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////

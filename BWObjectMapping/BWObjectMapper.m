@@ -226,6 +226,11 @@
                                      forObject:object];
     }];
     
+    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
+        id result = [self objectFromJSON:[dict objectForKey:key] withMapping:objectMapping];
+        [object setValue:result forKeyPath:key];
+    }];
+    
     if (nil != self.didMapObjectBlock) {
         self.didMapObjectBlock(object);
     }
