@@ -103,7 +103,7 @@
     } else if ([JSON isKindOfClass:[NSDictionary class]]) {
         id object = [self objectFromJSON:JSON withMapping:mapping];
         
-        if (nil != objects)
+        if (nil != object)
             [objects addObject:object];
     }
         
