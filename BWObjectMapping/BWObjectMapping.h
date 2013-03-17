@@ -50,6 +50,28 @@
 
 - (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping forKeyPath:(NSString *)keyPath;
 
+- (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping
+                       forKeyPath:(NSString *)keyPath
+                        attribute:(NSString *)attribute;
+
+- (void)hasOneWithRelationObjectMappingClass:(Class)objectMappingClass
+                                  forKeyPath:(NSString *)keyPath
+                                   attribute:(NSString *)attribute;
+
+- (void)hasOneWithRelationObjectMappingClass:(Class)objectMappingClass
+                                  forKeyPath:(NSString *)keyPath;
+
 - (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping forKeyPath:(NSString *)keyPath;
+
+- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping
+                        forKeyPath:(NSString *)keyPath
+                         attribute:(NSString *)attribute;
+
+- (void)hasManyWithRelationObjectMappingClass:(Class)objectMappingClass
+                                   forKeyPath:(NSString *)keyPath
+                                    attribute:(NSString *)attribute;
+
+- (void)hasManyWithRelationObjectMappingClass:(Class)objectMappingClass
+                                   forKeyPath:(NSString *)keyPath;
 
 @end

@@ -19,6 +19,7 @@
 
 #import "BWObjectAttributeMapping.h"
 #import "BWObjectMapper.h"
+#import "BWOjectRelationAttributeMapping.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,22 +119,114 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping forKeyPath:(NSString *)keyPath
-{
-    [self.hasManyMappings setValue:mapping forKeyPath:keyPath];
+- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping
+                        forKeyPath:(NSString *)keyPath {
+    
+    [self hasManyWithRelationMapping:mapping forKeyPath:keyPath attribute:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)hasManyWithRelationMapping:(BWObjectMapping *)mapping
+                        forKeyPath:(NSString *)keyPath
+                         attribute:(NSString *)attribute {
+    
+    [self addRelationAttributeMappingForKeyPath:keyPath
+                                      attribute:attribute
+                                  objectMapping:mapping
+                             objectMappingClass:nil
+                                        hasMany:YES];
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping forKeyPath:(NSString *)keyPath
-{
-    [self.hasOneMappings setObject:mapping forKey:keyPath];
+- (void)hasManyWithRelationObjectMappingClass:(Class)objectMappingClass
+                        forKeyPath:(NSString *)keyPath {
+    
+    [self hasManyWithRelationObjectMappingClass:objectMappingClass forKeyPath:keyPath attribute:nil];
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)hasManyWithRelationObjectMappingClass:(Class)objectMappingClass
+                                   forKeyPath:(NSString *)keyPath
+                                    attribute:(NSString *)attribute {
+    
+    [self addRelationAttributeMappingForKeyPath:keyPath
+                                      attribute:attribute
+                                  objectMapping:nil
+                             objectMappingClass:objectMappingClass
+                                        hasMany:YES];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping
+                       forKeyPath:(NSString *)keyPath {
+    
+    [self hasOneWithRelationMapping:mapping forKeyPath:keyPath attribute:nil];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)hasOneWithRelationMapping:(BWObjectMapping *)mapping
+                       forKeyPath:(NSString *)keyPath
+                        attribute:(NSString *)attribute {
+    
+    [self addRelationAttributeMappingForKeyPath:keyPath
+                                      attribute:attribute
+                                  objectMapping:mapping
+                             objectMappingClass:nil
+                                        hasMany:NO];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)hasOneWithRelationObjectMappingClass:(Class)objectMappingClass
+                       forKeyPath:(NSString *)keyPath {
+    
+    [self hasOneWithRelationObjectMappingClass:objectMappingClass forKeyPath:keyPath attribute:nil];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)hasOneWithRelationObjectMappingClass:(Class)objectMappingClass
+                                  forKeyPath:(NSString *)keyPath
+                                   attribute:(NSString *)attribute {
+    
+    [self addRelationAttributeMappingForKeyPath:keyPath
+                                      attribute:attribute
+                                  objectMapping:nil
+                             objectMappingClass:objectMappingClass
+                                        hasMany:NO];
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addRelationAttributeMappingForKeyPath:(NSString *)keyPath
+                                    attribute:(NSString *)attribute
+                                objectMapping:(BWObjectMapping *)objectMapping
+                           objectMappingClass:(Class)objectMappingClass
+                                      hasMany:(BOOL)hasMany {
+    
+    BWOjectRelationAttributeMapping *attributeMapping = [[BWOjectRelationAttributeMapping alloc] init];
+    
+    attributeMapping.keyPath = keyPath;
+    attributeMapping.attribute = attribute ?: keyPath;
+    attributeMapping.objectMapping = objectMapping;
+    attributeMapping.objectMappingClass = objectMappingClass;
+    
+    if (hasMany) {
+        [self.hasManyMappings setValue:attributeMapping forKey:keyPath];
+    } else {
+        [self.hasOneMappings setValue:attributeMapping forKey:keyPath];
+    }
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

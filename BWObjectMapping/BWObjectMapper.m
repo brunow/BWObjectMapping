@@ -19,6 +19,7 @@
 
 #import "BWObjectAttributeMapping.h"
 #import "BWObjectValueMapper.h"
+#import "BWOjectRelationAttributeMapping.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,13 +235,40 @@
                                      forObject:object];
     }];
     
-    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
-        id result = [self objectFromJSON:[dict objectForKey:key] withMapping:objectMapping];
+    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+        id result = nil;
+        
+        if (nil != relationObjectMapping.objectMapping) {
+            result = [self objectFromJSON:[dict objectForKey:key]
+                              withMapping:relationObjectMapping.objectMapping];
+            
+        } else if (nil != relationObjectMapping.objectMappingClass) {
+            result = [self objectFromJSON:[dict objectForKey:key]
+                              withObjectClass:relationObjectMapping.objectMappingClass];
+        }
+        
+        if (nil != relationObjectMapping.valueBlock) {
+            result = relationObjectMapping.valueBlock(result);
+        }
+        
         [object setValue:result forKeyPath:key];
     }];
     
-    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
-        NSArray *result = [self objectsFromJSON:[dict objectForKey:key] withMapping:objectMapping];
+    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+        NSArray *result = nil;
+        
+        if (nil != relationObjectMapping.objectMapping) {
+            result = [self objectsFromJSON:[dict objectForKey:key]
+                              withMapping:relationObjectMapping.objectMapping];
+            
+        } else if (nil != relationObjectMapping.objectMappingClass) {
+            result = [self objectsFromJSON:[dict objectForKey:key]
+                          withObjectClass:relationObjectMapping.objectMappingClass];
+        }
+        
+        if (nil != relationObjectMapping.valueBlock) {
+            result = relationObjectMapping.valueBlock(result);
+        }
         
         [[BWObjectValueMapper shared] setValue:result forKeyPath:key withAttributeMapping:nil forObject:object];
     }];

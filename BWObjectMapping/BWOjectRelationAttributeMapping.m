@@ -1,6 +1,6 @@
 //
 // Created by Bruno Wernimont on 2012
-// Copyright 2012 BWObjectMapping
+// Copyright 2013 BWObjectMapping
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,12 +15,11 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import "BWOjectRelationAttributeMapping.h"
 
-typedef id(^BWObjectMappingValueBlock)(id value, id object);
 
-typedef id(^BWObjectMappingObjectBlock)(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON);
-
-typedef void(^BWObjectMappingObjectDidMapObjectBlock)(id object);
-
-typedef id(^BWObjectRelationMappingValueBlock)(id object);
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation BWOjectRelationAttributeMapping
+@end

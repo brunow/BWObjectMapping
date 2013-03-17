@@ -16,6 +16,7 @@
 		C69C257916D4FAA30008038E /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257816D4FAA30008038E /* Wheel.m */; };
 		E7018D4E15C6492600D3ADEE /* BWObjectValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */; };
 		E7018D5515C65FB000D3ADEE /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D5415C65FB000D3ADEE /* Entity.m */; };
+		E75E88F516F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */; };
 		E7B6880F15BAA9E700002F08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6880E15BAA9E700002F08 /* UIKit.framework */; };
 		E7B6881115BAA9E700002F08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6881015BAA9E700002F08 /* Foundation.framework */; };
 		E7B6881315BAA9E700002F08 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6881215BAA9E700002F08 /* CoreGraphics.framework */; };
@@ -65,6 +66,8 @@
 		E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectValueMapper.m; sourceTree = "<group>"; };
 		E7018D5315C65FB000D3ADEE /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		E7018D5415C65FB000D3ADEE /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
+		E75E88F316F5D17F00FDB448 /* BWOjectRelationAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWOjectRelationAttributeMapping.h; sourceTree = "<group>"; };
+		E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWOjectRelationAttributeMapping.m; sourceTree = "<group>"; };
 		E7B6880A15BAA9E700002F08 /* BWObjectMappingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BWObjectMappingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B6880E15BAA9E700002F08 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E7B6881015BAA9E700002F08 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -226,6 +229,8 @@
 				E7B6885815BAACD600002F08 /* BWObjectMappingBlocks.h */,
 				E7018D4C15C6492600D3ADEE /* BWObjectValueMapper.h */,
 				E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */,
+				E75E88F316F5D17F00FDB448 /* BWOjectRelationAttributeMapping.h */,
+				E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */,
 			);
 			path = BWObjectMapping;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				C69C256F16D46BA00008038E /* Engine.m in Sources */,
 				C69C257416D4729A0008038E /* MappingProvider.m in Sources */,
 				C69C257916D4FAA30008038E /* Wheel.m in Sources */,
+				E75E88F516F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
