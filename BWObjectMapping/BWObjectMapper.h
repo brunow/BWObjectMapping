@@ -29,6 +29,8 @@
 
 + (BWObjectMapper *)shared;
 
+- (void)unregisterAllMappings;
+
 - (void)registerMapping:(BWObjectMapping *)mapping;
 
 - (void)registerMapping:(BWObjectMapping *)mapping withRootKeyPath:(NSString *)keyPath;

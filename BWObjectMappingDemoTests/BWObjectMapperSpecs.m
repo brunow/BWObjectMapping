@@ -20,6 +20,8 @@ describe(@"mapping", ^{
     context(@"Simple object", ^{
         
         beforeAll(^{
+            [[BWObjectMapper shared] unregisterAllMappings];
+            
             [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
                 [mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
                 [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
@@ -137,6 +139,43 @@ describe(@"mapping", ^{
                 
                 [[theValue([mapping.attributeMappings count]) should] equal:theValue(2)];
             }];
+        });
+        
+    });
+    
+    context(@"Many object", ^{
+        __block NSDictionary *JSON;
+        
+        beforeAll(^{
+            [[BWObjectMapper shared] unregisterAllMappings];
+            
+            [BWObjectMapping mappingForObject:[Person class] block:^(BWObjectMapping *mapping) {
+                [mapping mapKeyPath:@"name" toAttribute:@"name"];
+                [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"persons"];
+            }];
+            
+            [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+                [mapping mapKeyPath:@"email" toAttribute:@"email"];
+                [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"users"];
+            }];
+        });
+        
+        beforeEach(^{
+            JSON = @{@"persons": @[ @{@"name": @"Bruno"} ],
+                     @"users" : @[ @{@"email": @"hello@brunowernimont.be"} ]
+                     };
+        });
+        
+        it(@"should map one person person object and one user object", ^{
+            NSArray *objects = [[BWObjectMapper shared] objectsFromJSON:JSON];
+            
+            [[theValue(objects.count) should] equal:theValue(2)];
+            
+            Person *person = [objects objectAtIndex:0];
+            User *user = [objects objectAtIndex:1];
+            
+            [[theValue([person class]) should] equal:theValue([Person class])];
+            [[theValue([user class]) should] equal:theValue([User class])];
         });
         
     });
@@ -362,6 +401,8 @@ describe(@"mapping", ^{
     context(@"Core data object", ^{
         
         beforeAll(^{
+            [[BWObjectMapper shared] unregisterAllMappings];
+            
             [BWObjectMapping mappingForObject:[Entity class] block:^(BWObjectMapping *mapping) {
                 [mapping mapKeyPath:@"bool" toAttribute:@"boolValue"];
                 [mapping mapKeyPath:@"int" toAttribute:@"intValue"];

@@ -65,6 +65,12 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)unregisterAllMappings {
+    [self.mappings removeAllObjects];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerMapping:(BWObjectMapping *)mapping {
     [self registerMapping:mapping withRootKeyPath:nil];
 }
@@ -99,6 +105,10 @@
             NSArray *newObjects = [self objectsFromJSON:obj withMapping:mapping];
             [objects addObjectsFromArray:newObjects];
         }];
+        
+    } else if ([JSON objectForKey:mapping.rootKeyPath]) {
+        NSArray *newObjects = [self objectsFromJSON:[JSON objectForKey:mapping.rootKeyPath] withMapping:mapping];
+        [objects addObjectsFromArray:newObjects];
         
     } else if ([JSON isKindOfClass:[NSDictionary class]]) {
         id object = [self objectFromJSON:JSON withMapping:mapping];
@@ -139,8 +149,6 @@
                 
                 if (newbjects.count > 0)
                     [objects addObjectsFromArray:newbjects];
-                
-                *stop = YES;
             }
         }];
         
