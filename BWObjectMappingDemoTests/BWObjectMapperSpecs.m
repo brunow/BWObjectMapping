@@ -141,6 +141,21 @@ describe(@"mapping", ^{
             }];
         });
         
+        it(@"should set nil value from null even if value is already set to an existing object", ^{
+            BWObjectMapping *m = [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+                [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
+                [[BWObjectMapper shared] registerMapping:mapping];
+            }];
+            
+            id JSON = @{@"first_name": @"Bruno"};
+            User *user = [[BWObjectMapper shared] objectFromJSON:JSON withMapping:m];
+            [[user.firstName should] equal:@"Bruno"];
+            
+            JSON = @{@"first_name": [NSNull null]};
+            [[BWObjectMapper shared] objectFromJSON:JSON withMapping:m existingObject:user];
+            [[@"Bruno" shouldNot] equal:user.firstName];
+        });
+        
     });
     
     context(@"Many object", ^{

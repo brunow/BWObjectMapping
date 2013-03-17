@@ -55,10 +55,6 @@
     if (self) {
         self.mappings = [NSMutableDictionary dictionary];
         self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-        
-        self.objectBlock = ^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
-            return [[objectClass alloc] init];
-        };
     }
     return self;
 }
@@ -175,7 +171,11 @@
     id primaryKeyValue = [JSONToMap objectForKey:mapping.primaryKeyAttribute.keyPath];
     
     if (nil == object) {
-        object = self.objectBlock(mapping.objectClass, primaryKey, primaryKeyValue, JSONToMap);
+        if (nil == self.objectBlock) {
+            object = [[mapping.objectClass alloc] init];
+        } else {
+            object = self.objectBlock(mapping.objectClass, primaryKey, primaryKeyValue, JSONToMap);
+        }
     }
     
     [self mapDictionary:JSONToMap toObject:object withMapping:mapping];

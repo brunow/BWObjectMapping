@@ -56,11 +56,15 @@
 withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
        forObject:(id)object {
     
-    if (nil == value || [NSNull class] == [value class]) {
+    if (nil == value) {
         return;
     }
     
     id transformedValue = value;
+    
+    if ([NSNull class] == [transformedValue class]) {
+        transformedValue = nil;
+    }
     
     if ([value isKindOfClass:[NSString class]]) {
         NSDate *date = [self parseDateValue:value withAttributeMapping:attributeMapping];
