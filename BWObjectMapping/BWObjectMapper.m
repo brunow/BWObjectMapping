@@ -230,7 +230,7 @@
     [mapping.attributeMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectAttributeMapping *attributeMapping, BOOL *stop) {
         [[BWObjectValueMapper shared] setValue:[dict valueForKeyPath:attributeMapping.keyPath]
                                     forKeyPath:attributeMapping.attribute
-                             withAttributeMapping:attributeMapping
+                          withAttributeMapping:attributeMapping
                                      forObject:object];
     }];
     
@@ -241,7 +241,8 @@
     
     [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
         NSArray *result = [self objectsFromJSON:[dict objectForKey:key] withMapping:objectMapping];
-        [object setValue:result forKeyPath:key];
+        
+        [[BWObjectValueMapper shared] setValue:result forKeyPath:key withAttributeMapping:nil forObject:object];
     }];
     
     if (nil != self.didMapObjectBlock) {

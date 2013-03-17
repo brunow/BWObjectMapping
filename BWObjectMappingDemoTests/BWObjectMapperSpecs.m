@@ -388,7 +388,9 @@ describe(@"mapping", ^{
             carWithWheelsJSON = @{ @"model" : @"HB20",
                                    @"year" : @"2013",
                                    @"engine" : @{ @"type" : @"v8" },
-                                   @"wheels" : @[ @{ @"id" : @"123123123", @"type" : @"16" }, @{ @"id" : @"1234", @"type" : @"17" } ]
+                                   @"wheels" : @[ @{ @"id" : @"123123123", @"type" : @"16" }, @{ @"id" : @"1234", @"type" : @"17" } ],
+                                   @"wheelsSet" : @[ @{ @"id" : @"123123123", @"type" : @"16" }, @{ @"id" : @"1234", @"type" : @"17" } ],
+                                   @"wheelsOrderedSet" : @[ @{ @"id" : @"123123123", @"type" : @"16" }, @{ @"id" : @"1234", @"type" : @"17" } ]
                                 };
             
             car = [[BWObjectMapper shared] objectFromJSON:carWithWheelsJSON withMapping:[MappingProvider carMapping]];
@@ -409,6 +411,17 @@ describe(@"mapping", ^{
         
         specify(^{
             [[theValue([car.wheels count]) should] beGreaterThan:theValue(0)];
+            [[car.wheels should] beKindOfClass:[NSArray class]];
+        });
+        
+        describe(@"Array must be converted to NSSet and NSOrderedSet", ^{
+            specify(^{
+                [[theValue([car.wheelsSet count]) should] beGreaterThan:theValue(0)];
+                [[car.wheelsSet should] beKindOfClass:[NSSet class]];
+                
+                [[theValue([car.wheelsOrderedSet count]) should] beGreaterThan:theValue(0)];
+                [[car.wheelsOrderedSet should] beKindOfClass:[NSOrderedSet class]];
+            });
         });
         
     });

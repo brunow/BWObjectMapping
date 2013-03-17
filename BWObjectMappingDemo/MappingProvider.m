@@ -19,6 +19,8 @@
         [mapping mapAttributeFromArray:@[@"model", @"year"]];
         [mapping hasOneWithRelationMapping:[self engineMapping] forKeyPath:@"engine"];
         [mapping hasManyWithRelationMapping:[self wheelMapping] forKeyPath:@"wheels"];
+        [mapping hasManyWithRelationMapping:[self wheelMapping] forKeyPath:@"wheelsSet"];
+        [mapping hasManyWithRelationMapping:[self wheelMapping] forKeyPath:@"wheelsOrderedSet"];
     }];
 }
 
