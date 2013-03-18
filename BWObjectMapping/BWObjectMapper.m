@@ -272,7 +272,7 @@
             result = relationObjectMapping.valueBlock(result);
         }
         
-        [[BWObjectValueMapper shared] setValue:result forKeyPath:key withAttributeMapping:nil forObject:object];
+        [[BWObjectValueMapper shared] setValue:result forKeyPath:relationObjectMapping.attribute withAttributeMapping:nil forObject:object];
     }];
     
     if (nil != self.didMapObjectBlock) {
