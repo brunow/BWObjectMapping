@@ -113,7 +113,7 @@
         if (nil != object)
             [objects addObject:object];
     }
-        
+    
     return [NSArray arrayWithArray:objects];
 }
 
@@ -165,7 +165,7 @@
 - (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping existingObject:(id)object {
     id JSONToMap = [JSON objectForKey:mapping.rootKeyPath];
     
-    if (nil == JSONToMap)
+    if (nil == JSONToMap || [NSNull null] == JSONToMap)
         JSONToMap = JSON;
     
     NSString *primaryKey = mapping.primaryKeyAttribute.attribute;
@@ -237,33 +237,35 @@
     
     [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
         id result = nil;
+        id relationJSON = [dict objectForKey:key];
         
-        if (nil != relationObjectMapping.objectMapping) {
-            result = [self objectFromJSON:[dict objectForKey:key]
+        if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
+            result = [self objectFromJSON:relationJSON
                               withMapping:relationObjectMapping.objectMapping];
             
-        } else if (nil != relationObjectMapping.objectMappingClass) {
-            result = [self objectFromJSON:[dict objectForKey:key]
-                              withObjectClass:relationObjectMapping.objectMappingClass];
+        } else if (nil != relationObjectMapping.objectMappingClass && [NSNull null] != relationJSON) {
+            result = [self objectFromJSON:relationJSON
+                          withObjectClass:relationObjectMapping.objectMappingClass];
         }
         
         if (nil != relationObjectMapping.valueBlock) {
             result = relationObjectMapping.valueBlock(result);
         }
         
-        [object setValue:result forKeyPath:key];
+        [object setValue:result forKeyPath:relationObjectMapping.attribute];
     }];
     
     [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
         NSArray *result = nil;
+        id relationJSON = [dict objectForKey:key];
         
-        if (nil != relationObjectMapping.objectMapping) {
-            result = [self objectsFromJSON:[dict objectForKey:key]
-                              withMapping:relationObjectMapping.objectMapping];
+        if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
+            result = [self objectsFromJSON:relationJSON
+                               withMapping:relationObjectMapping.objectMapping];
             
-        } else if (nil != relationObjectMapping.objectMappingClass) {
-            result = [self objectsFromJSON:[dict objectForKey:key]
-                          withObjectClass:relationObjectMapping.objectMappingClass];
+        } else if (nil != relationObjectMapping.objectMappingClass && [NSNull null] != relationJSON) {
+            result = [self objectsFromJSON:relationJSON
+                           withObjectClass:relationObjectMapping.objectMappingClass];
         }
         
         if (nil != relationObjectMapping.valueBlock) {

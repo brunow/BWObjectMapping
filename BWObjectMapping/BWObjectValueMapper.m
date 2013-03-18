@@ -86,14 +86,6 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
         transformedValue = [self transformValue:transformedValue forKeyPath:keyPath withCoreDataObject:object];
     }
     
-    NSLog(@"%@", keyPath);
-    
-    if ([keyPath isEqualToString:@"wheelsSet"]) {
-        NSLog(@"wheelsSet");
-        NSLog(@"%@", NSStringFromClass([transformedValue class]));
-        NSLog(@"%@", transformedValue);
-    }
-    
     if ([transformedValue isKindOfClass:[NSArray class]]) {
         transformedValue = [self transformArrayValue:transformedValue forKeyPath:keyPath withObject:object];
     }
@@ -111,8 +103,6 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)transformArrayValue:(id)value forKeyPath:(NSString *)keyPath withObject:(id)object {
     NSString *propertyString = [self propertyStringTypeForName:keyPath object:object];
-    
-    NSLog(@"keyPath %@ propertyString %@", keyPath, propertyString);
     
     if ([propertyString isEqualToString:@"NSSet"]) {
         return [NSSet setWithArray:value];
