@@ -40,6 +40,8 @@
 
 - (void)mapAttributeFromArray:(NSArray *)attributes;
 
+- (void)mapRailsAttributeFormatFromCoreDataFormatWithArray:(NSArray *)attributes;
+
 - (void)mapKeyPath:(NSString *)keyPath toAttribute:(NSString *)attribute;
 
 - (void)mapKeyPath:(NSString *)keyPath toAttribute:(NSString *)attribute dateFormat:(NSString *)dateFormat;

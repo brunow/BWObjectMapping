@@ -20,6 +20,7 @@
 #import "BWObjectAttributeMapping.h"
 #import "BWObjectMapper.h"
 #import "BWOjectRelationAttributeMapping.h"
+#import "NSString+BWObjectMapping.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,6 +107,15 @@
 - (void)mapAttributeFromArray:(NSArray *)attributes {
     [attributes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self mapKeyPath:obj toAttribute:obj];
+    }];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)mapRailsAttributeFormatFromCoreDataFormatWithArray:(NSArray *)attributes {
+    [attributes enumerateObjectsUsingBlock:^(NSString *coreDataAttribute, NSUInteger idx, BOOL *stop) {
+        NSString *railsAttribute = [coreDataAttribute BWO_stringByUnderscoringWord];
+        [self mapKeyPath:railsAttribute toAttribute:coreDataAttribute];
     }];
 }
 

@@ -17,6 +17,8 @@
 		E7018D4E15C6492600D3ADEE /* BWObjectValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */; };
 		E7018D5515C65FB000D3ADEE /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D5415C65FB000D3ADEE /* Entity.m */; };
 		E75E88F516F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */; };
+		E79D42D716F8DDC300F4FEA9 /* NSString+BWObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E79D42D616F8DDC300F4FEA9 /* NSString+BWObjectMapping.m */; };
+		E79D42DA16F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = E79D42D916F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m */; };
 		E7B6880F15BAA9E700002F08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6880E15BAA9E700002F08 /* UIKit.framework */; };
 		E7B6881115BAA9E700002F08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6881015BAA9E700002F08 /* Foundation.framework */; };
 		E7B6881315BAA9E700002F08 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6881215BAA9E700002F08 /* CoreGraphics.framework */; };
@@ -68,6 +70,9 @@
 		E7018D5415C65FB000D3ADEE /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		E75E88F316F5D17F00FDB448 /* BWOjectRelationAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWOjectRelationAttributeMapping.h; sourceTree = "<group>"; };
 		E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWOjectRelationAttributeMapping.m; sourceTree = "<group>"; };
+		E79D42D516F8DDC300F4FEA9 /* NSString+BWObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BWObjectMapping.h"; sourceTree = "<group>"; };
+		E79D42D616F8DDC300F4FEA9 /* NSString+BWObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BWObjectMapping.m"; sourceTree = "<group>"; };
+		E79D42D916F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectMappingStringSpecs.m; sourceTree = "<group>"; };
 		E7B6880A15BAA9E700002F08 /* BWObjectMappingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BWObjectMappingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B6880E15BAA9E700002F08 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E7B6881015BAA9E700002F08 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -204,6 +209,7 @@
 				E7B6883315BAA9E700002F08 /* Supporting Files */,
 				E7B689FF15BAB69000002F08 /* BWObjectMapperSpecs.m */,
 				C69C257016D471370008038E /* BWObjectMappingSpec.m */,
+				E79D42D916F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m */,
 			);
 			path = BWObjectMappingDemoTests;
 			sourceTree = "<group>";
@@ -231,6 +237,8 @@
 				E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */,
 				E75E88F316F5D17F00FDB448 /* BWOjectRelationAttributeMapping.h */,
 				E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */,
+				E79D42D516F8DDC300F4FEA9 /* NSString+BWObjectMapping.h */,
+				E79D42D616F8DDC300F4FEA9 /* NSString+BWObjectMapping.m */,
 			);
 			path = BWObjectMapping;
 			sourceTree = "<group>";
@@ -357,6 +365,7 @@
 				C69C257416D4729A0008038E /* MappingProvider.m in Sources */,
 				C69C257916D4FAA30008038E /* Wheel.m in Sources */,
 				E75E88F516F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m in Sources */,
+				E79D42D716F8DDC300F4FEA9 /* NSString+BWObjectMapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +375,7 @@
 			files = (
 				E7B68A0015BAB69000002F08 /* BWObjectMapperSpecs.m in Sources */,
 				C69C257116D471370008038E /* BWObjectMappingSpec.m in Sources */,
+				E79D42DA16F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
