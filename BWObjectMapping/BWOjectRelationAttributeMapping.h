@@ -21,7 +21,7 @@
 
 @class BWObjectMapping;
 
-@interface BWOjectRelationAttributeMapping : NSObject
+@interface BWObjectRelationAttributeMapping : NSObject
 
 @property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, copy) NSString *attribute;

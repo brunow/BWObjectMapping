@@ -19,7 +19,7 @@
 
 #import "BWObjectAttributeMapping.h"
 #import "BWObjectValueMapper.h"
-#import "BWOjectRelationAttributeMapping.h"
+#import "BWObjectRelationAttributeMapping.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -235,7 +235,7 @@
                                      forObject:object];
     }];
     
-    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
         id result = nil;
         id relationJSON = [dict objectForKey:key];
         
@@ -255,7 +255,7 @@
         [object setValue:result forKeyPath:relationObjectMapping.attribute];
     }];
     
-    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
         NSArray *result = nil;
         id relationJSON = [dict objectForKey:key];
         

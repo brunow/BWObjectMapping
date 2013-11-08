@@ -19,7 +19,7 @@
 
 #import "BWObjectAttributeMapping.h"
 #import "BWObjectMapper.h"
-#import "BWOjectRelationAttributeMapping.h"
+#import "BWObjectRelationAttributeMapping.h"
 #import "NSString+BWObjectMapping.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -224,7 +224,7 @@
                            objectMappingClass:(Class)objectMappingClass
                                       hasMany:(BOOL)hasMany {
     
-    BWOjectRelationAttributeMapping *attributeMapping = [[BWOjectRelationAttributeMapping alloc] init];
+    BWObjectRelationAttributeMapping *attributeMapping = [[BWObjectRelationAttributeMapping alloc] init];
     
     attributeMapping.keyPath = keyPath;
     attributeMapping.attribute = attribute ?: keyPath;
