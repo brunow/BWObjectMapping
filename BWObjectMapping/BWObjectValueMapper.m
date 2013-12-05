@@ -21,18 +21,11 @@
 #import "BWObjectMappingBlocks.h"
 
 #import <objc/runtime.h>
-#import <coredata/coredata.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface BWObjectValueMapper ()
-
-- (NSDate *)parseDateValue:(NSString *)value withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping;
-
-- (id)transformValue:(id)value withValueBlock:(BWObjectMappingValueBlock)valueBlock fromObject:(id)object;
-
-- (id)transformValue:(id)value forKeyPath:(NSString *)keyPath withCoreDataObject:(NSManagedObject *)object;
 
 @end
 
@@ -70,7 +63,7 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     }
     
     if ([value isKindOfClass:[NSString class]]) {
-        NSDate *date = [self parseDateValue:value withAttributeMapping:attributeMapping];
+        NSDate *date = [self parseDateValue:value withAttributeMapping:attributeMapping object:object];
         
         if (nil != date) {
             transformedValue = date;
@@ -121,6 +114,10 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)transformValue:(id)value forKeyPath:(NSString *)keyPath withCoreDataObject:(NSManagedObject *)object {
+    if (nil == value) {
+        return nil;
+    }
+    
     NSAttributeDescription *attributeDesc = [[[object entity] attributesByName] objectForKey:keyPath];
     
     id transformedValue = nil;
@@ -132,7 +129,7 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     NSAttributeType attributeType = attributeDesc.attributeType;
     Class expectedClass = NSClassFromString(attributeDesc.attributeValueClassName);
     
-    if(nil == value || [value isKindOfClass:expectedClass]) {
+    if([value isKindOfClass:expectedClass]) {
         return value;
     }
     
@@ -188,9 +185,15 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSDate *)parseDateValue:(NSString *)value withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping {
+- (NSDate *)parseDateValue:(NSString *)value withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping object:(id)object {
+    NSString *cacheKey = [NSString stringWithFormat:@"%@-%@-isDate", NSStringFromClass([object class]), attributeMapping.attribute];
+    
+    if ([[self cache] objectForKey:cacheKey] && NO == [[[self cache] objectForKey:cacheKey] boolValue]) {
+        return nil;
+    }
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[BWObjectMapper shared].timeZoneForSecondsFromGMT];
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     NSString *dateFormat = nil;
     
@@ -201,13 +204,25 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     }
     
     [dateFormatter setDateFormat:dateFormat];
+    NSDate *date = [dateFormatter dateFromString:value];
     
-    return [dateFormatter dateFromString:value];
+    if (value) {
+        BOOL isDate = !!date;
+        [[self cache] setValue:@(isDate) forKey:cacheKey];
+    }
+    
+    return date;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)propertyStringTypeForName:(NSString *)propertyName object:(id)object {
+    NSString *cacheKey = [NSString stringWithFormat:@"%@-%@-propertyStringType", NSStringFromClass([object class]), propertyName];
+    
+    if ([[self cache] objectForKey:cacheKey]) {
+        return [[self cache] objectForKey:cacheKey];
+    }
+    
     objc_property_t property = class_getProperty([object class], [propertyName UTF8String]);
     
     if (NULL == property) {
@@ -236,10 +251,27 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     }
     
     if ([attributeType length] > 3) {
-        return [attributeType substringWithRange:NSMakeRange(2, attributeType.length-3)];
+        NSString *propertyType = [attributeType substringWithRange:NSMakeRange(2, attributeType.length-3)];
+        [[self cache] setObject:propertyType forKey:cacheKey];
+        return propertyName;
     }
     
     return nil;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSMutableDictionary *)cache {
+    return [[self class] cache];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSMutableDictionary *)cache {
+    static dispatch_once_t pred = 0;
+    __strong static id _sharedObject = nil;
+    dispatch_once(&pred, ^{
+        _sharedObject = [[NSMutableDictionary alloc] init];
+    });
+    return _sharedObject;
 }
 
 

@@ -19,7 +19,7 @@
 
 #import "BWObjectAttributeMapping.h"
 #import "BWObjectValueMapper.h"
-#import "BWObjectRelationAttributeMapping.h"
+#import "BWOjectRelationAttributeMapping.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +56,7 @@
     if (self) {
         self.mappings = [NSMutableDictionary dictionary];
         self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+        self.timeZoneForSecondsFromGMT = 0;
     }
     return self;
 }
@@ -235,7 +236,7 @@
                                      forObject:object];
     }];
     
-    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
         id result = nil;
         id relationJSON = [dict objectForKey:key];
         
@@ -255,7 +256,7 @@
         [object setValue:result forKeyPath:relationObjectMapping.attribute];
     }];
     
-    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
         NSArray *result = nil;
         id relationJSON = [dict objectForKey:key];
         

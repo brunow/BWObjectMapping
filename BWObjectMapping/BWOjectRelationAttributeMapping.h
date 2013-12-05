@@ -1,6 +1,6 @@
 //
 // Created by Bruno Wernimont on 2012
-// Copyright 2012 BWObjectMapping
+// Copyright 2013 BWObjectMapping
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,14 +19,14 @@
 
 #import "BWObjectMappingBlocks.h"
 
-@interface BWObjectAttributeMapping : NSObject
+@class BWObjectMapping;
+
+@interface BWOjectRelationAttributeMapping : NSObject
 
 @property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, copy) NSString *attribute;
-@property (nonatomic, copy) BWObjectMappingValueBlock valueBlock;
-@property (nonatomic, assign, getter=isPrimaryKey) BOOL primaryKey;
-@property (nonatomic, copy) NSString *dateFormat;
-
-+ (id)attributeMapping;
+@property (nonatomic, copy) BWObjectRelationMappingValueBlock valueBlock;
+@property (nonatomic, strong) BWObjectMapping *objectMapping;
+@property (nonatomic, assign) Class objectMappingClass;
 
 @end
