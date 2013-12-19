@@ -60,6 +60,8 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     
     if ([NSNull class] == [transformedValue class]) {
         transformedValue = nil;
+        [object setValue:transformedValue forKeyPath:keyPath];
+        return;
     }
     
     if ([value isKindOfClass:[NSString class]]) {
@@ -192,9 +194,6 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
         return nil;
     }
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[BWObjectMapper shared].timeZoneForSecondsFromGMT];
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     NSString *dateFormat = nil;
     
     if (nil != attributeMapping.dateFormat) {
@@ -203,7 +202,16 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
         dateFormat = [[BWObjectMapper shared] defaultDateFormat];
     }
     
-    [dateFormatter setDateFormat:dateFormat];
+    NSString *dateformaterKey = [NSString stringWithFormat:@"dateFormatter-%d-%@", [BWObjectMapper shared].timeZoneForSecondsFromGMT, dateFormat];
+    NSDateFormatter *dateFormatter = [[self cache] objectForKey:dateformaterKey];
+    if (nil == dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[BWObjectMapper shared].timeZoneForSecondsFromGMT];
+        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        [dateFormatter setDateFormat:dateFormat];
+        [[self cache] setObject:dateFormatter forKey:dateformaterKey];
+    }
+    
     NSDate *date = [dateFormatter dateFromString:value];
     
     if (value) {
