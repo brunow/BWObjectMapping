@@ -2,6 +2,34 @@
 
 Small library that parse JSON and map it to any object, works with NSManagedObject.
 
+## Extremely easy to use
+
+My object
+
+@interface User : NSObject
+
+@property (nonatomic, strong) NSNumber *userID;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSDate *createdAt;
+
+@end
+
+My json
+
+```JSON
+
+{
+    "id": 14,
+    "first_name": "Wernimont",
+    "created_at": "2013-12-12T14:11:10Z"
+}
+
+```
+
+User *user = [[BWObjectMapper shared] objectFromJSON:JSON withObjectClass:[User class]];
+
+That's it ! JSON will be magically serialized as a user object.
+
 ## Example object interface
 
 	@interface User : NSObject
@@ -24,6 +52,33 @@ Small library that parse JSON and map it to any object, works with NSManagedObje
 	}];
 
 At the last line we register the mapping and give a root key path. You don't need to have one, but if not the mapper will not be able to guess which mapping class to use.
+
+## Magic mapping
+
+By default if you follow the following naming convention you don't need to manually set the mapping
+
+json key -> Model attribute name 
+
+name -> name
+
+id -> postID
+
+user_name -> userName
+
+Above example become
+
+	[BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+		[mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
+		[mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
+		[mapping mapAttributeFromArray:@[@"name"]];
+		[mapping mapAttributeFromDictionary:@{@"created_at" : @"createdAt"}];    
+      
+		[[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
+	}];
+
+Or even shorter
+
+	[[BWObjectMapper shared] registerMappingForClass:[User class] withRootKeyPath:@"user"];
 
 ## Object creation
 
@@ -184,10 +239,6 @@ Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingP
 ## Installation
 
 **Copy BWObjectMapper dir** into your **project**.
-
-Or with **Cocoapods**
-
-	pod 'BWObjectMapper', :git => "https://github.com/brunow/BWObjectMapper.git", :tag => "0.2.0"
 
 ## ARC
 

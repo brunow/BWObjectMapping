@@ -37,6 +37,10 @@
 
 - (void)registerMapping:(BWObjectMapping *)mapping;
 
+- (void)registerMappingForClass:(Class)klass;
+
+- (void)registerMappingForClass:(Class)klass withRootKeyPath:(NSString *)keyPath;
+
 - (void)registerMapping:(BWObjectMapping *)mapping withRootKeyPath:(NSString *)keyPath;
 
 - (NSArray *)objectsFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping;

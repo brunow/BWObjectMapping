@@ -70,6 +70,19 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerMappingForClass:(Class)klass {
+    [self registerMappingForClass:klass withRootKeyPath:nil];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerMappingForClass:(Class)klass withRootKeyPath:(NSString *)keyPath {
+    [self registerMapping:[[BWObjectMapping alloc] initWithObjectClass:klass]
+          withRootKeyPath:keyPath];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerMapping:(BWObjectMapping *)mapping {
     [self registerMapping:mapping withRootKeyPath:nil];
 }
@@ -201,6 +214,11 @@
 - (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass existingObject:(id)object {
     NSString *objectName = NSStringFromClass(objectClass);
     BWObjectMapping *mapping = [self.mappings objectForKey:objectName];
+    
+    if (nil == mapping) {
+        mapping = [[BWObjectMapping alloc] initWithObjectClass:objectClass];
+    }
+    
     return [self objectFromJSON:JSON withMapping:mapping existingObject:object];
 }
 
