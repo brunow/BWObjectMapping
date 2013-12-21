@@ -30,7 +30,11 @@ My json
 
 ```
 
-	User *user = [[BWObjectMapper shared] objectFromJSON:JSON withObjectClass:[User class]];
+```objective-c
+
+User *user = [[BWObjectMapper shared] objectFromJSON:JSON withObjectClass:[User class]];
+
+```
 
 That's it ! JSON will be magically serialized as a user object.
 
