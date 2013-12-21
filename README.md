@@ -6,6 +6,8 @@ Small library that parse JSON and map it to any object, works with NSManagedObje
 
 My object
 
+```objective-c
+
 @interface User : NSObject
 
 @property (nonatomic, strong) NSNumber *userID;
@@ -13,6 +15,8 @@ My object
 @property (nonatomic, strong) NSDate *createdAt;
 
 @end
+
+```
 
 My json
 
