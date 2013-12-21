@@ -190,6 +190,11 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
 - (NSDate *)parseDateValue:(NSString *)value withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping object:(id)object {
     NSString *cacheKey = [NSString stringWithFormat:@"%@-%@-isDate", NSStringFromClass([object class]), attributeMapping.attribute];
     
+    if ([value length] > 30) {
+        [[self cache] setValue:@(NO) forKey:cacheKey];
+        return nil;
+    }
+    
     if ([[self cache] objectForKey:cacheKey] && NO == [[[self cache] objectForKey:cacheKey] boolValue]) {
         return nil;
     }
@@ -203,6 +208,7 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     }
     
     NSString *dateformaterKey = [NSString stringWithFormat:@"dateFormatter-%d-%@", [BWObjectMapper shared].timeZoneForSecondsFromGMT, dateFormat];
+    
     NSDateFormatter *dateFormatter = [[self cache] objectForKey:dateformaterKey];
     if (nil == dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -225,13 +231,18 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)propertyStringTypeForName:(NSString *)propertyName object:(id)object {
-    NSString *cacheKey = [NSString stringWithFormat:@"%@-%@-propertyStringType", NSStringFromClass([object class]), propertyName];
+    return [BWObjectValueMapper propertyStringTypeForName:propertyName klass:[object class]];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString *)propertyStringTypeForName:(NSString *)propertyName klass:(Class)klass {
+    NSString *cacheKey = [NSString stringWithFormat:@"%@-%@-propertyStringType", NSStringFromClass(klass), propertyName];
     
     if ([[self cache] objectForKey:cacheKey]) {
         return [[self cache] objectForKey:cacheKey];
     }
     
-    objc_property_t property = class_getProperty([object class], [propertyName UTF8String]);
+    objc_property_t property = class_getProperty(klass, [propertyName UTF8String]);
     
     if (NULL == property) {
         return nil;
@@ -261,7 +272,7 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     if ([attributeType length] > 3) {
         NSString *propertyType = [attributeType substringWithRange:NSMakeRange(2, attributeType.length-3)];
         [[self cache] setObject:propertyType forKey:cacheKey];
-        return propertyName;
+        return propertyType;
     }
     
     return nil;

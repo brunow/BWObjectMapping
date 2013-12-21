@@ -55,6 +55,7 @@
     self = [super init];
     if (self) {
         self.mappings = [NSMutableDictionary dictionary];
+        self.defaultMappings = [NSMutableDictionary dictionary];
         self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
         self.timeZoneForSecondsFromGMT = 0;
     }
@@ -99,10 +100,11 @@
     NSMutableArray *objects = [NSMutableArray array];
     
     if ([JSON isKindOfClass:[NSArray class]]) {
-        [JSON enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        for (id obj in JSON) {
             NSArray *newObjects = [self objectsFromJSON:obj withMapping:mapping];
             [objects addObjectsFromArray:newObjects];
-        }];
+        }
         
     } else if ([JSON objectForKey:mapping.rootKeyPath]) {
         NSArray *newObjects = [self objectsFromJSON:[JSON objectForKey:mapping.rootKeyPath] withMapping:mapping];
@@ -132,13 +134,16 @@
     NSMutableArray *objects = [NSMutableArray array];
     
     if ([JSON isKindOfClass:[NSArray class]]) {
-        [JSON enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        for (id obj in JSON) {
             NSArray *newObjects = [self objectsFromJSON:obj];
             [objects addObjectsFromArray:newObjects];
-        }];
+        }
         
     } else if ([JSON isKindOfClass:[NSDictionary class]]) {
-        [self.mappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
+        
+        for (NSString *key in self.mappings) {
+            BWObjectMapping *objectMapping = [self.mappings objectForKey:key];
             NSString *rootKeyPath = objectMapping.rootKeyPath;
             id rootKeyPathObject = [JSON objectForKey:rootKeyPath];
             
@@ -148,7 +153,7 @@
                 if (newbjects.count > 0)
                     [objects addObjectsFromArray:newbjects];
             }
-        }];
+        }
         
     }
     
@@ -208,16 +213,24 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectFromJSON:(id)JSON existingObject:(id)object {
-    __block id parsedObject = nil;
-    [self.mappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectMapping *objectMapping, BOOL *stop) {
+    id parsedObject = nil;
+    
+    for (NSString *key in self.mappings) {
+        BWObjectMapping *objectMapping = [self.mappings objectForKey:key];
         if (objectMapping.objectClass == [object class]) {
             parsedObject = [self objectFromJSON:JSON withMapping:objectMapping existingObject:object];
             
-            *stop = YES;
+            break;
         }
-    }];
+    }
     
     return parsedObject;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)mapKeyPath:(NSString *)keyPath toAttribute:(NSString *)attribute {
+    [self.defaultMappings setObject:keyPath forKey:attribute];
 }
 
 
@@ -229,14 +242,16 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping {
-    [mapping.attributeMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWObjectAttributeMapping *attributeMapping, BOOL *stop) {
+    for (NSString *key in mapping.attributeMappings) {
+        BWObjectAttributeMapping *attributeMapping = [mapping.attributeMappings objectForKey:key];
         [[BWObjectValueMapper shared] setValue:[dict valueForKeyPath:attributeMapping.keyPath]
                                     forKeyPath:attributeMapping.attribute
                           withAttributeMapping:attributeMapping
                                      forObject:object];
-    }];
-    
-    [mapping.hasOneMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+    }
+    //
+    for (NSString *key in mapping.hasOneMappings) {
+        BWOjectRelationAttributeMapping *relationObjectMapping = [mapping.hasOneMappings objectForKey:key];
         id result = nil;
         id relationJSON = [dict objectForKey:key];
         
@@ -254,9 +269,10 @@
         }
         
         [object setValue:result forKeyPath:relationObjectMapping.attribute];
-    }];
-    
-    [mapping.hasManyMappings enumerateKeysAndObjectsUsingBlock:^(id key, BWOjectRelationAttributeMapping *relationObjectMapping, BOOL *stop) {
+    }
+    //
+    for (NSString *key in mapping.hasManyMappings) {
+        BWOjectRelationAttributeMapping *relationObjectMapping = [mapping.hasManyMappings objectForKey:key];
         NSArray *result = nil;
         id relationJSON = [dict objectForKey:key];
         
@@ -274,8 +290,8 @@
         }
         
         [[BWObjectValueMapper shared] setValue:result forKeyPath:relationObjectMapping.attribute withAttributeMapping:nil forObject:object];
-    }];
-    
+    }
+    //
     if (nil != self.didMapObjectBlock) {
         self.didMapObjectBlock(object);
     }

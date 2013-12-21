@@ -132,15 +132,6 @@ describe(@"mapping", ^{
             [[theValue(hasCalledDidMapObjectBlock) should] equal:theValue(YES)];
         });
         
-        it(@"should add attribute mapping from array and dictionary", ^{
-            [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
-                [mapping mapAttributeFromArray:@[@"name"]];
-                [mapping mapAttributeFromDictionary:@{@"created_at" : @"createdAt"}];
-                
-                [[theValue([mapping.attributeMappings count]) should] equal:theValue(2)];
-            }];
-        });
-        
         it(@"should set nil value from null even if value is already set to an existing object", ^{
             BWObjectMapping *m = [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
                 [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
@@ -424,6 +415,27 @@ describe(@"mapping", ^{
             });
         });
         
+    });
+    
+    context(@"Automatic mapping", ^{
+        beforeAll(^{
+            [[BWObjectMapper shared] unregisterAllMappings];
+            
+            [BWObjectMapping mappingForObject:[Car class] block:^(BWObjectMapping *mapping) {
+                [[BWObjectMapper shared] registerMapping:mapping];
+            }];
+        });
+        
+        it(@"should map object", ^{
+            NSDictionary *carJSON = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      @(14), @"id",
+                                      @"VW Polo", @"model",
+                                      nil];
+            
+            Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withObjectClass:[Car class]];
+            [[car.carID should] equal:@(14)];
+            [[car.model should] equal:@"VW Polo"];
+        });
     });
     
     context(@"Core data object", ^{

@@ -21,6 +21,8 @@
 #import "BWObjectMapper.h"
 #import "BWOjectRelationAttributeMapping.h"
 #import "NSString+BWObjectMapping.h"
+#import <objc/runtime.h>
+#import "BWObjectValueMapper.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,6 +46,8 @@
         _attributeMappings = [NSMutableDictionary dictionary];
         _hasOneMappings = [NSMutableDictionary dictionary];
         _hasManyMappings = [NSMutableDictionary dictionary];
+        
+        [self generateAutoMapping];
     }
     return self;
 }
@@ -150,7 +154,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hasManyWithRelationObjectMappingClass:(Class)objectMappingClass
-                        forKeyPath:(NSString *)keyPath {
+                                   forKeyPath:(NSString *)keyPath {
     
     [self hasManyWithRelationObjectMappingClass:objectMappingClass forKeyPath:keyPath attribute:nil];
 }
@@ -192,7 +196,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hasOneWithRelationObjectMappingClass:(Class)objectMappingClass
-                       forKeyPath:(NSString *)keyPath {
+                                  forKeyPath:(NSString *)keyPath {
     
     [self hasOneWithRelationObjectMappingClass:objectMappingClass forKeyPath:keyPath attribute:nil];
 }
@@ -215,6 +219,68 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)isPropertyPrimitive:(NSString *)propertyName {
+    NSString *propertyType = [BWObjectValueMapper propertyStringTypeForName:propertyName klass:self.objectClass];
+    Class propertyKlass = NSClassFromString(propertyType);
+    
+    if ([NSNumber class] == propertyKlass ||
+        [NSString class] == propertyKlass ||
+        [NSDate class] == propertyKlass) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)isPropertyPrimaryKey:(NSString *)propertyName {
+    if ([propertyName rangeOfString:@"ID"].location == NSNotFound) {
+        return NO;
+    }
+    
+    NSString *className = [NSStringFromClass(self.objectClass) lowercaseString];
+    NSString *propertyEscapedName = [[propertyName stringByReplacingOccurrencesOfString:@"ID" withString:@""] lowercaseString];
+    
+    if ([className isEqualToString:propertyEscapedName]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)generateAutoMapping {
+    NSMutableArray *array = [NSMutableArray array];
+    
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList([self.objectClass class], &outCount);
+    for(i = 0; i < outCount; i++) {
+        objc_property_t property = properties[i];
+        
+        NSString *propertyName = @(property_getName(property));
+        if ([self isPropertyPrimitive:propertyName]) {
+            
+            if ([self isPropertyPrimaryKey:propertyName]) {
+                [self mapPrimaryKeyAttribute:@"id" toAttribute:propertyName];
+                
+            } else if ([[BWObjectMapper shared].defaultMappings objectForKey:propertyName]) {
+                [self mapKeyPath:[[BWObjectMapper shared].defaultMappings objectForKey:propertyName]
+                     toAttribute:propertyName];
+                
+            } else {
+                [array addObject:propertyName];
+            }
+        }
+    }
+    free(properties);
+    
+    [self mapRailsAttributeFormatFromCoreDataFormatWithArray:array];
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

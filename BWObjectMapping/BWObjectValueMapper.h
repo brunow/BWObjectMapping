@@ -28,4 +28,6 @@
 withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
        forObject:(id)object;
 
++ (NSString *)propertyStringTypeForName:(NSString *)propertyName klass:(Class)klass;
+
 @end

@@ -12,6 +12,7 @@
 
 @interface Car : NSObject
 
+@property (nonatomic, strong) NSNumber *carID;
 @property (nonatomic, copy)   NSString *model;
 @property (nonatomic, copy)   NSString *year;
 @property (nonatomic, strong) Engine   *engine;
