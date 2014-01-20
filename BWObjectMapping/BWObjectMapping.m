@@ -255,31 +255,39 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)generateAutoMapping {
-    NSMutableArray *array = [NSMutableArray array];
+    Class klass = self.objectClass;
     
-    unsigned int outCount, i;
-    objc_property_t *properties = class_copyPropertyList([self.objectClass class], &outCount);
-    for(i = 0; i < outCount; i++) {
-        objc_property_t property = properties[i];
+    while ([NSObject class] != klass) {
+        unsigned int outCount, i;
+        objc_property_t *properties = class_copyPropertyList(klass, &outCount);
         
-        NSString *propertyName = @(property_getName(property));
-        if ([self isPropertyPrimitive:propertyName]) {
+        for(i = 0; i < outCount; i++) {
+            objc_property_t property = properties[i];
+            [self generateMappingForProperty:property];
+        }
+        free(properties);
+        
+        klass = class_getSuperclass(klass);
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)generateMappingForProperty:(objc_property_t)property {
+    NSString *propertyName = @(property_getName(property));
+    if ([self isPropertyPrimitive:propertyName]) {
+        
+        if ([self isPropertyPrimaryKey:propertyName]) {
+            [self mapPrimaryKeyAttribute:@"id" toAttribute:propertyName];
             
-            if ([self isPropertyPrimaryKey:propertyName]) {
-                [self mapPrimaryKeyAttribute:@"id" toAttribute:propertyName];
-                
-            } else if ([[BWObjectMapper shared].defaultMappings objectForKey:propertyName]) {
-                [self mapKeyPath:[[BWObjectMapper shared].defaultMappings objectForKey:propertyName]
-                     toAttribute:propertyName];
-                
-            } else {
-                [array addObject:propertyName];
-            }
+        } else if ([[BWObjectMapper shared].defaultMappings objectForKey:propertyName]) {
+            [self mapKeyPath:[[BWObjectMapper shared].defaultMappings objectForKey:propertyName]
+                 toAttribute:propertyName];
+            
+        } else {
+            [self mapRailsAttributeFormatFromCoreDataFormatWithArray:@[ propertyName ]];
         }
     }
-    free(properties);
-    
-    [self mapRailsAttributeFormatFromCoreDataFormatWithArray:array];
 }
 
 
