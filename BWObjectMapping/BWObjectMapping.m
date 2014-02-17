@@ -56,8 +56,16 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)mappingForObject:(Class)objectClass block:(void(^)(BWObjectMapping *mapping))block {
     BWObjectMapping *mapping = [[self alloc] initWithObjectClass:objectClass];
-    block(mapping);
+    if (block) {
+        block(mapping);
+    }
     return mapping;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)mappingForObject:(Class)objectClass {
+    return [self mappingForObject:objectClass block:nil];
 }
 
 

@@ -34,6 +34,8 @@
 
 + (id)mappingForObject:(Class)objectClass block:(void(^)(BWObjectMapping *mapping))block;
 
++ (id)mappingForObject:(Class)objectClass;
+
 - (void)mapPrimaryKeyAttribute:(NSString *)primaryKey toAttribute:(NSString *)attribute;
 
 - (void)mapAttributeFromDictionary:(NSDictionary *)attributes;
