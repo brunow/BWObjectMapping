@@ -261,3 +261,7 @@ Big thanks to [lucasmedeirosleite ](https://github.com/lucasmedeirosleite) that 
 Bruno Wernimont
 
 - Twitter - [@brunowernimont](http://twitter.com/brunowernimont)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/brunow/bwobjectmapping/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
