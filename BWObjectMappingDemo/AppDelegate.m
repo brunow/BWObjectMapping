@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import <CoreData/CoreData.h>
+
 @implementation AppDelegate
 
 @synthesize window = _window;
