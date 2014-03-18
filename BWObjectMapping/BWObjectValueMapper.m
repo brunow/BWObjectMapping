@@ -77,10 +77,12 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
                                  withValueBlock:attributeMapping.valueBlock
                                      fromObject:object];
     }
-    
+
+#ifdef _COREDATADEFINES_H
     if ([object isKindOfClass:NSClassFromString(@"NSManagedObject")]) {
         transformedValue = [self transformValue:transformedValue forKeyPath:keyPath withCoreDataObject:object];
     }
+#endif
     
     if ([transformedValue isKindOfClass:[NSArray class]]) {
         transformedValue = [self transformArrayValue:transformedValue forKeyPath:keyPath withObject:object];
@@ -113,7 +115,7 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     return nil;
 }
 
-
+#ifdef _COREDATADEFINES_H
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)transformValue:(id)value forKeyPath:(NSString *)keyPath withCoreDataObject:(NSManagedObject *)object {
     if (nil == value) {
@@ -178,7 +180,7 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
     
     return transformedValue;
 }
-
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)transformValue:(id)value withValueBlock:(BWObjectMappingValueBlock)valueBlock fromObject:(id)object {
