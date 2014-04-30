@@ -248,9 +248,9 @@ Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingP
 
 **Copy BWObjectMapper dir** into your **project**.
 
-Or with **Cocoapods**
+Or with **CocoaPods**
 
-    pod 'BWObjectMapping', :git => "https://github.com/brunow/BWObjectMapping.git", :tag => "0.3.1"
+    pod 'BWObjectMapping', :git => "https://github.com/brunow/BWObjectMapping.git", :tag => "0.3.2"
 
 ## ARC
 
