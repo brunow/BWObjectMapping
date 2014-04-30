@@ -17,5 +17,6 @@
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSArray *comments;
 @property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSNumber *number;
 
 @end

@@ -10,6 +10,7 @@
 #import "Wheel.h"
 #import "MappingProvider.h"
 #import "AppDelegate.h"
+#import "BWObjectValueMapper.h"
 
 #define CUSTOM_VALUE_VALUE @"customValue"
 
@@ -26,6 +27,7 @@ describe(@"mapping", ^{
                 [mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
                 [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
                 [mapping mapKeyPath:@"created_at" toAttribute:@"createdAt"];
+                [mapping mapKeyPath:@"string_number" toAttribute:@"number"];
                 [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
             }];
             
@@ -39,6 +41,15 @@ describe(@"mapping", ^{
                 [[BWObjectMapper shared] registerMapping:objectMapping withRootKeyPath:@"comment"];
             }];
             
+        });
+        
+        it(@"should convert string to number", ^{
+            NSDictionary *userJSON = @{@"string_number": @"1"};
+            NSDictionary *JSON = [NSDictionary dictionaryWithObject:userJSON forKey:@"user"];
+            id expectedNumber = @(1);
+            NSArray *objects = [[BWObjectMapper shared] objectsFromJSON:JSON];
+            User *user = [objects lastObject];
+            [[user.number should] equal:expectedNumber];
         });
         
         it(@"should map the right object mapping", ^{

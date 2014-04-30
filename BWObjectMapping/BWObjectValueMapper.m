@@ -78,6 +78,15 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
                                      fromObject:object];
     }
     
+    Class toPropertyTypeClass = NSClassFromString([self propertyStringTypeForName:keyPath object:object]);
+    Class fromPropertyTypeClass = [value class];
+    
+    if ([fromPropertyTypeClass isSubclassOfClass:[NSString class]] &&
+        [NSNumber class] == toPropertyTypeClass) {
+        
+        transformedValue = @([transformedValue doubleValue]);
+    }
+    
     if ([object isKindOfClass:NSClassFromString(@"NSManagedObject")]) {
         transformedValue = [self transformValue:transformedValue forKeyPath:keyPath withCoreDataObject:object];
     }

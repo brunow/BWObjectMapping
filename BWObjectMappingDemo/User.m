@@ -16,5 +16,6 @@
 @synthesize firstName;
 @synthesize createdAt;
 @synthesize comments;
+@synthesize number;
 
 @end
