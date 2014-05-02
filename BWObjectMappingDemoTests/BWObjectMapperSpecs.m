@@ -43,6 +43,27 @@ describe(@"mapping", ^{
             
         });
         
+        it(@"should call completion block after mapping", ^{
+            [[BWObjectMapper shared] unregisterAllMappings];
+            
+            __block BOOL hasCalledCompletion = NO;
+            
+            [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+                [mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
+                [mapping setCompletionBlock:^(id object, id JSON) {
+                    hasCalledCompletion = YES;
+                }];
+                
+                [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
+            }];
+            
+            NSDictionary *userJSON = @{@"string_number": @"1"};
+            NSDictionary *JSON = [NSDictionary dictionaryWithObject:userJSON forKey:@"user"];
+            [[BWObjectMapper shared] objectsFromJSON:JSON];
+            
+            [[theValue(hasCalledCompletion) should] equal:theValue(YES)];
+        });
+        
         it(@"should convert string to number", ^{
             NSDictionary *userJSON = @{@"string_number": @"1"};
             NSDictionary *JSON = [NSDictionary dictionaryWithObject:userJSON forKey:@"user"];

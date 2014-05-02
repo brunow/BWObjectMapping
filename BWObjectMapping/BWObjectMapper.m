@@ -313,6 +313,10 @@
     if (nil != self.didMapObjectBlock) {
         self.didMapObjectBlock(object);
     }
+    
+    if (mapping.completionBlock) {
+        mapping.completionBlock(object, dict);
+    }
 }
 
 

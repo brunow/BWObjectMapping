@@ -29,6 +29,7 @@
 @property (nonatomic, readonly, strong) NSMutableDictionary *hasManyMappings;
 @property (nonatomic, strong) BWObjectAttributeMapping *primaryKeyAttribute;
 @property (nonatomic, strong) NSString *rootKeyPath;
+@property (nonatomic, copy) BWObjectMappingCompletionBlock completionBlock;
 
 - (id)initWithObjectClass:(Class)objectClass;
 
@@ -77,5 +78,7 @@
 
 - (void)hasManyWithRelationObjectMappingClass:(Class)objectMappingClass
                                    forKeyPath:(NSString *)keyPath;
+
+- (void)setCompletionBlock:(BWObjectMappingCompletionBlock)completionBlock;
 
 @end

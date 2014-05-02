@@ -24,3 +24,5 @@ typedef id(^BWObjectMappingObjectBlock)(Class objectClass, NSString *primaryKey,
 typedef void(^BWObjectMappingObjectDidMapObjectBlock)(id object);
 
 typedef id(^BWObjectRelationMappingValueBlock)(id object);
+
+typedef void(^BWObjectMappingCompletionBlock)(id object, id JSON);
