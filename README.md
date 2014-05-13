@@ -1,6 +1,6 @@
 ## BWObjectMapping
 
-Small library that parse JSON and map it to any object, works with NSManagedObject.
+Small library that parse almost automatically JSON and map it to any object, works with NSManagedObject.
 
 ## Extremely easy to use
 
