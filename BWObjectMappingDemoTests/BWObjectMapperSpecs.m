@@ -18,6 +18,36 @@ SPEC_BEGIN(BWObjectMapperSpecs)
 
 describe(@"mapping", ^{
     
+    context(@"two same mapping with different rootKeyPath", ^{
+        
+        it(@"should map with two keyPath for same mapping", ^{
+            [[BWObjectMapper shared] unregisterAllMappings];
+            
+            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
+                return [[objectClass alloc] init];
+            }];
+            
+            [[BWObjectMapper shared] registerMappingForClass:[User class] withRootKeyPath:@"me"];
+            [[BWObjectMapper shared] registerMappingForClass:[User class] withRootKeyPath:@"users"];
+            
+            NSDictionary *userJSON = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      @"first name", @"first_name",
+                                      @(1), @"id",
+                                      nil];
+            
+            NSDictionary *JSON = [NSDictionary dictionaryWithObject:userJSON forKey:@"me"];
+            
+            NSArray *users = [[BWObjectMapper shared] objectsFromJSON:@{@"users": @[ userJSON, userJSON ]}];
+            [[theValue(users.count) should] equal:theValue(2)];
+            id firstUser = [users firstObject];
+            [[theValue([firstUser class]) should] equal:theValue([User class])];
+            
+            id user = [[BWObjectMapper shared] objectFromJSON:JSON];
+            [[theValue([user class]) should] equal:theValue([User class])];
+        });
+        
+    });
+    
     context(@"Simple object", ^{
         
         beforeAll(^{
@@ -101,6 +131,26 @@ describe(@"mapping", ^{
         });
         
         it(@"should map the right object mapping", ^{
+            [[BWObjectMapper shared] unregisterAllMappings];
+            
+            [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+                [mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
+                [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
+                [mapping mapKeyPath:@"created_at" toAttribute:@"createdAt"];
+                [mapping mapKeyPath:@"string_number" toAttribute:@"number"];
+                [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
+            }];
+            
+            [BWObjectMapping mappingForObject:[Comment class] block:^(BWObjectMapping *objectMapping) {
+                [objectMapping mapKeyPath:@"comment" toAttribute:@"comment"];
+                
+                [objectMapping mapKeyPath:@"custom_value" toAttribute:@"customValue" valueBlock:^id(id value, id object) {
+                    return CUSTOM_VALUE_VALUE;
+                }];
+                
+                [[BWObjectMapper shared] registerMapping:objectMapping withRootKeyPath:@"comment"];
+            }];
+            
             id expectedFirstName = @"bruno";
             id expectedUserID = [NSNumber numberWithInt:4];
             

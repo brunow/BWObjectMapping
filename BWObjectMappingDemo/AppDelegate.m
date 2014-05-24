@@ -10,6 +10,11 @@
 
 #import <CoreData/CoreData.h>
 
+#import "BWObjectMapping.h"
+#import "User.h"
+#import "Comment.h"
+#import "BWObjectMapper.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -19,6 +24,37 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+        [mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
+        [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
+        [mapping mapKeyPath:@"created_at" toAttribute:@"createdAt"];
+        [mapping mapKeyPath:@"string_number" toAttribute:@"number"];
+        [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
+    }];
+    
+    [BWObjectMapping mappingForObject:[Comment class] block:^(BWObjectMapping *objectMapping) {
+        [objectMapping mapKeyPath:@"comment" toAttribute:@"comment"];
+        
+        [objectMapping mapKeyPath:@"custom_value" toAttribute:@"customValue" valueBlock:^id(id value, id object) {
+            return @"ccc";
+        }];
+        
+        [[BWObjectMapper shared] registerMapping:objectMapping withRootKeyPath:@"comment"];
+    }];
+    
+    id expectedFirstName = @"bruno";
+    id expectedUserID = [NSNumber numberWithInt:4];
+    
+    NSDictionary *userJSON = [NSDictionary dictionaryWithObjectsAndKeys:
+                              expectedFirstName, @"first_name",
+                              expectedUserID, @"id",
+                              nil];
+    
+    NSDictionary *JSON = [NSDictionary dictionaryWithObject:userJSON forKey:@"user"];
+    
+    NSArray *objects = [[BWObjectMapper shared] objectsFromJSON:JSON];
+    NSLog(@"------ %@", objects);
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

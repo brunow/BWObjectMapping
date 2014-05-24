@@ -23,6 +23,7 @@
 
 @interface BWObjectMapping : NSObject
 
+@property (nonatomic, strong, readonly) NSString *objectClassString;
 @property (nonatomic, assign) Class objectClass;
 @property (nonatomic, readonly, strong) NSMutableDictionary *attributeMappings;
 @property (nonatomic, readonly, strong) NSMutableDictionary *hasOneMappings;
