@@ -43,6 +43,28 @@ describe(@"mapping", ^{
             
         });
         
+        it(@"should map object without id", ^{
+            BWObjectMapping *mapping = [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+                [mapping mapPrimaryKeyAttribute:@"id" toAttribute:@"userID"];
+                [mapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
+            }];
+            
+            id expectedFirstName = @"bruno";
+            
+            NSDictionary *userJSON = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      expectedFirstName, @"first_name",
+//                                      @(1), @"id",
+                                      nil];
+            
+            User *user = [[BWObjectMapper shared] objectFromJSON:userJSON withMapping:mapping];
+            Class class = [user class];
+            
+            [[theValue(class) should] equal:theValue([User class])];
+            [[user should] beNonNil];
+            [user.userID shouldBeNil];
+            [[user.firstName should] equal:expectedFirstName];
+        });
+        
         it(@"should call completion block after mapping", ^{
             [[BWObjectMapper shared] unregisterAllMappings];
             
@@ -65,6 +87,11 @@ describe(@"mapping", ^{
         });
         
         it(@"should convert string to number", ^{
+            [BWObjectMapping mappingForObject:[User class] block:^(BWObjectMapping *mapping) {
+                [mapping mapKeyPath:@"string_number" toAttribute:@"number"];
+                [[BWObjectMapper shared] registerMapping:mapping withRootKeyPath:@"user"];
+            }];
+            
             NSDictionary *userJSON = @{@"string_number": @"1"};
             NSDictionary *JSON = [NSDictionary dictionaryWithObject:userJSON forKey:@"user"];
             id expectedNumber = @(1);
@@ -139,6 +166,14 @@ describe(@"mapping", ^{
         });
         
         it(@"should map custom value", ^{
+            [BWObjectMapping mappingForObject:[Comment class] block:^(BWObjectMapping *objectMapping) {
+                [objectMapping mapKeyPath:@"custom_value" toAttribute:@"customValue" valueBlock:^id(id value, id object) {
+                    return CUSTOM_VALUE_VALUE;
+                }];
+                
+                [[BWObjectMapper shared] registerMapping:objectMapping withRootKeyPath:@"comment"];
+            }];
+            
             NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                                   @"a value that must be transformed", @"custom_value",
                                   nil];

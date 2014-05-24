@@ -18,4 +18,9 @@
 @synthesize comments;
 @synthesize number;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ %@ %@ %@", self.userID, self.firstName, self.createdAt, self.number];
+}
+
 @end

@@ -190,6 +190,10 @@
     NSString *primaryKey = mapping.primaryKeyAttribute.attribute;
     id primaryKeyValue = [JSONToMap objectForKey:mapping.primaryKeyAttribute.keyPath];
     
+    if ([NSNull null] == primaryKeyValue) {
+        primaryKeyValue = nil;
+    }
+    
     if (nil == object) {
         if (nil == self.objectBlock) {
             object = [[mapping.objectClass alloc] init];
