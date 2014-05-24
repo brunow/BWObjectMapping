@@ -250,7 +250,7 @@ Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingP
 
 Or with **CocoaPods**
 
-    pod 'BWObjectMapping', :git => "https://github.com/brunow/BWObjectMapping.git", :tag => "0.4.0"
+    pod 'BWObjectMapping', :git => "https://github.com/brunow/BWObjectMapping.git", :tag => "0.4.1"
 
 ## ARC
 
