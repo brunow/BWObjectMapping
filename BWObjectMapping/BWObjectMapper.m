@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface BWObjectMapper ()
 
-@property (nonatomic, strong) NSMutableArray *mappings;
+@property (nonatomic, strong) NSMutableDictionary *mappings;
 
 - (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping;
 
@@ -54,7 +54,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.mappings = [NSMutableArray array];
+        self.mappings = [NSMutableDictionary dictionary];
         self.defaultMappings = [NSMutableDictionary dictionary];
         self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
         self.timeZoneForSecondsFromGMT = 0;
@@ -90,8 +90,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerMapping:(BWObjectMapping *)mapping withRootKeyPath:(NSString *)keyPath {
+    NSString *objectName = NSStringFromClass(mapping.objectClass);
     mapping.rootKeyPath = keyPath;
-    [self addMapping:mapping];
+    [self.mappings setObject:mapping forKey:objectName];
 }
 
 
@@ -135,7 +136,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)objectsFromJSON:(id)JSON withObjectClass:(Class)objectClass {
-    BWObjectMapping *mapping = [self bestMappingForObjectClass:objectClass];
+    NSString *objectName = NSStringFromClass(objectClass);
+    BWObjectMapping *mapping = [self.mappings objectForKey:objectName];
     return [self objectsFromJSON:JSON withMapping:mapping];
 }
 
@@ -153,19 +155,16 @@
         
     } else if ([JSON isKindOfClass:[NSDictionary class]]) {
         
-        NSMutableArray *mappedObjectClasses = [NSMutableArray array];
-        
-        for (BWObjectMapping *objectMapping in self.mappings) {
+        for (NSString *key in self.mappings) {
+            BWObjectMapping *objectMapping = [self.mappings objectForKey:key];
             NSString *rootKeyPath = objectMapping.rootKeyPath;
             id rootKeyPathObject = [JSON objectForKey:rootKeyPath];
             
             if (nil != rootKeyPathObject) {
                 NSArray *newbjects = [self objectsFromJSON:rootKeyPathObject withMapping:objectMapping];
                 
-                if (newbjects.count > 0) {
+                if (newbjects.count > 0)
                     [objects addObjectsFromArray:newbjects];
-                    [mappedObjectClasses addObject:objectMapping.objectClassString];
-                }
             }
         }
         
@@ -191,10 +190,6 @@
     NSString *primaryKey = mapping.primaryKeyAttribute.attribute;
     id primaryKeyValue = [JSONToMap objectForKey:mapping.primaryKeyAttribute.keyPath];
     
-    if ([NSNull null] == primaryKeyValue) {
-        primaryKeyValue = nil;
-    }
-    
     if (nil == object) {
         if (nil == self.objectBlock) {
             object = [[mapping.objectClass alloc] init];
@@ -217,7 +212,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass existingObject:(id)object {
-    BWObjectMapping *mapping = [self bestMappingForObjectClass:objectClass];
+    NSString *objectName = NSStringFromClass(objectClass);
+    BWObjectMapping *mapping = [self.mappings objectForKey:objectName];
     
     if (nil == mapping) {
         mapping = [[BWObjectMapping alloc] initWithObjectClass:objectClass];
@@ -237,20 +233,12 @@
 - (id)objectFromJSON:(id)JSON existingObject:(id)object {
     id parsedObject = nil;
     
-    for (BWObjectMapping *objectMapping in self.mappings) {
-        if (nil != objectMapping && objectMapping.objectClass == [object class]) {
+    for (NSString *key in self.mappings) {
+        BWObjectMapping *objectMapping = [self.mappings objectForKey:key];
+        if (objectMapping.objectClass == [object class]) {
             parsedObject = [self objectFromJSON:JSON withMapping:objectMapping existingObject:object];
             
-            if (nil != parsedObject) {
-                break;
-            }
-            
-        } else {
-            parsedObject = [self objectFromJSON:JSON withMapping:objectMapping existingObject:object];
-            
-            if (nil != parsedObject) {
-                break;
-            }
+            break;
         }
     }
     
@@ -268,29 +256,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addMapping:(BWObjectMapping *)mapping {
-    [self.mappings addObject:mapping];
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"rootKeyPath" ascending:YES];
-    [self.mappings sortUsingDescriptors:@[ sort ]];
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (BWObjectMapping *)bestMappingForObjectClass:(Class)objectClass {
-    __block BWObjectMapping *bestMapping = nil;
-    
-    [self.mappings enumerateObjectsUsingBlock:^(BWObjectMapping *mapping, NSUInteger idx, BOOL *stop) {
-        if (mapping.objectClass == objectClass) {
-            bestMapping = mapping;
-            *stop = YES;
-        }
-    }];
-    
-    return bestMapping;
-}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
