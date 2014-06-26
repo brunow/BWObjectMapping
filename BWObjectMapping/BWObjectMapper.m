@@ -54,6 +54,7 @@
 + (BWObjectMapper *)mapperWithSharedMappings {
     BWObjectMapper *mapper = [[self alloc] init];
     [mapper registerMappings:[self shared].mappings];
+    mapper.objectBlock = [self shared].objectBlock;
     return mapper;
 }
 
