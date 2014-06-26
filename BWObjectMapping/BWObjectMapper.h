@@ -28,6 +28,7 @@
 @property (nonatomic, copy) BWObjectMappingObjectDidMapObjectBlock didMapObjectBlock;
 @property (nonatomic, assign) NSInteger timeZoneForSecondsFromGMT;
 @property (nonatomic, strong) NSMutableDictionary *defaultMappings;
+@property (nonatomic, strong) id objectWithBlockUserInfo;
 
 + (BWObjectMapper *)shared;
 

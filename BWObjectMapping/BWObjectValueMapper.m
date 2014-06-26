@@ -216,7 +216,7 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
         dateFormat = [[BWObjectMapper shared] defaultDateFormat];
     }
     
-    NSString *dateformaterKey = [NSString stringWithFormat:@"dateFormatter-%d-%@", [BWObjectMapper shared].timeZoneForSecondsFromGMT, dateFormat];
+    NSString *dateformaterKey = [NSString stringWithFormat:@"dateFormatter-%ld-%@", (long)[BWObjectMapper shared].timeZoneForSecondsFromGMT, dateFormat];
     
     NSDateFormatter *dateFormatter = [[self cache] objectForKey:dateformaterKey];
     if (nil == dateFormatter) {

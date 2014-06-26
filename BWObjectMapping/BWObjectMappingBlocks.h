@@ -19,7 +19,7 @@
 
 typedef id(^BWObjectMappingValueBlock)(id value, id object);
 
-typedef id(^BWObjectMappingObjectBlock)(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON);
+typedef id(^BWObjectMappingObjectBlock)(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON, id userInfo);
 
 typedef void(^BWObjectMappingObjectDidMapObjectBlock)(id object);
 

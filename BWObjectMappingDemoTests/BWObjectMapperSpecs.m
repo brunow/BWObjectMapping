@@ -23,7 +23,7 @@ describe(@"mapping", ^{
         it(@"should map with two keyPath for same mapping", ^{
             [[BWObjectMapper shared] unregisterAllMappings];
             
-            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
+            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON, id userInfo) {
                 return [[objectClass alloc] init];
             }];
             
@@ -199,7 +199,7 @@ describe(@"mapping", ^{
                 [JSON addObject:dict];
             }
             
-            int objectCount = [[[BWObjectMapper shared] objectsFromJSON:JSON] count];
+            NSUInteger objectCount = [[[BWObjectMapper shared] objectsFromJSON:JSON] count];
             [[theValue(objectCount) should] equal:theValue(expectedNumberOfObjects)];
         });
         
@@ -356,8 +356,8 @@ describe(@"mapping", ^{
         });
         
         specify(^{
-            int phonesCount = [person.phones count];
-            int expectedPhoneCount = [[[[JSON objectForKey:@"person"] objectForKey:@"contact"] objectForKey:@"phones"] count];
+            NSUInteger phonesCount = [person.phones count];
+            NSUInteger expectedPhoneCount = [[[[JSON objectForKey:@"person"] objectForKey:@"contact"] objectForKey:@"phones"] count];
             [[theValue(phonesCount) should] equal:theValue(expectedPhoneCount)];
         });
         
@@ -570,7 +570,7 @@ describe(@"mapping", ^{
                 [[BWObjectMapper shared] registerMapping:mapping];
             }];
             
-            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
+            [[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON, id userInfo) {
                 AppDelegate *app = [[UIApplication sharedApplication] delegate];
                 NSManagedObjectContext *context = [app managedObjectContext];
                 
