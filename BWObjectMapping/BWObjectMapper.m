@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface BWObjectMapper ()
 
-@property (nonatomic, strong) NSMutableDictionary *mappings;
+@property (nonatomic, strong) NSMutableDictionary *mutableMappings;
 
 - (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping;
 
@@ -51,10 +51,18 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
++ (BWObjectMapper *)mapperWithSharedMappings {
+    BWObjectMapper *mapper = [[self alloc] init];
+    [mapper registerMappings:[self shared].mappings];
+    return mapper;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
     self = [super init];
     if (self) {
-        self.mappings = [NSMutableDictionary dictionary];
+        self.mutableMappings = [NSMutableDictionary dictionary];
         self.defaultMappings = [NSMutableDictionary dictionary];
         self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
         self.timeZoneForSecondsFromGMT = 0;
@@ -64,8 +72,20 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDictionary *)mappings {
+    return [self.mutableMappings copy];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerMappings:(NSDictionary *)mappings {
+    self.mutableMappings = [mappings mutableCopy];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterAllMappings {
-    [self.mappings removeAllObjects];
+    [self.mutableMappings removeAllObjects];
 }
 
 
@@ -92,7 +112,7 @@
 - (void)registerMapping:(BWObjectMapping *)mapping withRootKeyPath:(NSString *)keyPath {
     NSString *objectName = NSStringFromClass(mapping.objectClass);
     mapping.rootKeyPath = keyPath;
-    [self.mappings setObject:mapping forKey:objectName];
+    [self.mutableMappings setObject:mapping forKey:objectName];
 }
 
 

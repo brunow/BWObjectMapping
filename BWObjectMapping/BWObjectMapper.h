@@ -23,6 +23,7 @@
 
 @interface BWObjectMapper : NSObject
 
+@property (nonatomic, readonly) NSDictionary *mappings;
 @property (nonatomic, copy) BWObjectMappingObjectBlock objectBlock;
 @property (nonatomic, copy) NSString *defaultDateFormat;
 @property (nonatomic, copy) BWObjectMappingObjectDidMapObjectBlock didMapObjectBlock;
@@ -31,6 +32,8 @@
 @property (nonatomic, strong) id objectWithBlockUserInfo;
 
 + (BWObjectMapper *)shared;
+
++ (BWObjectMapper *)mapperWithSharedMappings;
 
 - (void)mapKeyPath:(NSString *)keyPath toAttribute:(NSString *)attribute;
 
@@ -65,5 +68,7 @@
 - (void)objectWithBlock:(BWObjectMappingObjectBlock)objectBlock;
 
 - (void)didMapObjectWithBlock:(BWObjectMappingObjectDidMapObjectBlock)didMapBlock;
+
+- (void)registerMappings:(NSDictionary *)mappings;
 
 @end
