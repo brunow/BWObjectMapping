@@ -90,7 +90,7 @@ Or even shorter
 
 ## Object creation
 
-	[[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON) {
+	[[BWObjectMapper shared] objectWithBlock:^id(Class objectClass, NSString *primaryKey, id primaryKeyValue, id JSON, id userInfo) {
 		return [[objectClass alloc] init];
 	}];
 
