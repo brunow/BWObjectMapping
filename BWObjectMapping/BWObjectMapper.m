@@ -294,6 +294,10 @@
         id result = nil;
         id relationJSON = [dict objectForKey:key];
         
+        if (nil == relationJSON) {
+            break;
+        }
+        
         if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
             result = [self objectFromJSON:relationJSON
                               withMapping:relationObjectMapping.objectMapping];
@@ -314,6 +318,10 @@
         BWOjectRelationAttributeMapping *relationObjectMapping = [mapping.hasManyMappings objectForKey:key];
         NSArray *result = nil;
         id relationJSON = [dict objectForKey:key];
+        
+        if (nil == relationJSON) {
+            break;
+        }
         
         if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
             result = [self objectsFromJSON:relationJSON
