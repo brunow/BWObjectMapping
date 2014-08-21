@@ -47,6 +47,30 @@
 
 - (void)registerMapping:(BWObjectMapping *)mapping withRootKeyPath:(NSString *)keyPath;
 
+- (NSArray *)objectsFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping userInfo:(id)userInfo;
+
+- (NSArray *)objectsFromJSON:(id)JSON withObjectClass:(Class)objectClass userInfo:(id)userInfo;
+
+- (NSArray *)objectsFromJSON:(id)JSON userInfo:(id)userInfo;
+
+- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping userInfo:(id)userInfo;
+
+- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping existingObject:(id)object userInfo:(id)userInfo;
+
+- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass userInfo:(id)userInfo;
+
+- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass existingObject:(id)object userInfo:(id)userInfo;
+
+- (id)objectFromJSON:(id)JSON userInfo:(id)userInfo;
+
+- (id)objectFromJSON:(id)JSON existingObject:(id)object userInfo:(id)userInfo;
+
+- (void)objectWithBlock:(BWObjectMappingObjectBlock)objectBlock;
+
+- (void)didMapObjectWithBlock:(BWObjectMappingObjectDidMapObjectBlock)didMapBlock;
+
+- (void)registerMappings:(NSDictionary *)mappings;
+
 - (NSArray *)objectsFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping;
 
 - (NSArray *)objectsFromJSON:(id)JSON withObjectClass:(Class)objectClass;
@@ -64,11 +88,5 @@
 - (id)objectFromJSON:(id)JSON;
 
 - (id)objectFromJSON:(id)JSON existingObject:(id)object;
-
-- (void)objectWithBlock:(BWObjectMappingObjectBlock)objectBlock;
-
-- (void)didMapObjectWithBlock:(BWObjectMappingObjectDidMapObjectBlock)didMapBlock;
-
-- (void)registerMappings:(NSDictionary *)mappings;
 
 @end

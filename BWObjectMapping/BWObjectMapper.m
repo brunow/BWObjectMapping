@@ -28,8 +28,6 @@
 
 @property (nonatomic, strong) NSMutableDictionary *mutableMappings;
 
-- (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping;
-
 @end
 
 
@@ -130,22 +128,22 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSArray *)objectsFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping {
+- (NSArray *)objectsFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping userInfo:(id)userInfo {
     NSMutableArray *objects = [NSMutableArray array];
     
     if ([JSON isKindOfClass:[NSArray class]]) {
         
         for (id obj in JSON) {
-            NSArray *newObjects = [self objectsFromJSON:obj withMapping:mapping];
+            NSArray *newObjects = [self objectsFromJSON:obj withMapping:mapping userInfo:userInfo];
             [objects addObjectsFromArray:newObjects];
         }
         
     } else if ([JSON objectForKey:mapping.rootKeyPath]) {
-        NSArray *newObjects = [self objectsFromJSON:[JSON objectForKey:mapping.rootKeyPath] withMapping:mapping];
+        NSArray *newObjects = [self objectsFromJSON:[JSON objectForKey:mapping.rootKeyPath] withMapping:mapping userInfo:userInfo];
         [objects addObjectsFromArray:newObjects];
         
     } else if ([JSON isKindOfClass:[NSDictionary class]]) {
-        id object = [self objectFromJSON:JSON withMapping:mapping];
+        id object = [self objectFromJSON:JSON withMapping:mapping userInfo:userInfo];
         
         if (nil != object)
             [objects addObject:object];
@@ -156,21 +154,21 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSArray *)objectsFromJSON:(id)JSON withObjectClass:(Class)objectClass {
+- (NSArray *)objectsFromJSON:(id)JSON withObjectClass:(Class)objectClass userInfo:(id)userInfo {
     NSString *objectName = NSStringFromClass(objectClass);
     BWObjectMapping *mapping = [self.mappings objectForKey:objectName];
-    return [self objectsFromJSON:JSON withMapping:mapping];
+    return [self objectsFromJSON:JSON withMapping:mapping userInfo:userInfo];
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSArray *)objectsFromJSON:(id)JSON {
+- (NSArray *)objectsFromJSON:(id)JSON userInfo:(id)userInfo {
     NSMutableArray *objects = [NSMutableArray array];
     
     if ([JSON isKindOfClass:[NSArray class]]) {
         
         for (id obj in JSON) {
-            NSArray *newObjects = [self objectsFromJSON:obj];
+            NSArray *newObjects = [self objectsFromJSON:obj userInfo:userInfo];
             [objects addObjectsFromArray:newObjects];
         }
         
@@ -182,7 +180,7 @@
             id rootKeyPathObject = [JSON objectForKey:rootKeyPath];
             
             if (nil != rootKeyPathObject) {
-                NSArray *newbjects = [self objectsFromJSON:rootKeyPathObject withMapping:objectMapping];
+                NSArray *newbjects = [self objectsFromJSON:rootKeyPathObject withMapping:objectMapping userInfo:userInfo];
                 
                 if (newbjects.count > 0)
                     [objects addObjectsFromArray:newbjects];
@@ -196,13 +194,13 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping {
-    return [self objectFromJSON:JSON withMapping:mapping existingObject:nil];
+- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping userInfo:(id)userInfo {
+    return [self objectFromJSON:JSON withMapping:mapping existingObject:nil userInfo:userInfo];
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping existingObject:(id)object {
+- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping existingObject:(id)object userInfo:(id)userInfo {
     id JSONToMap = [JSON objectForKey:mapping.rootKeyPath];
     
     if (nil == JSONToMap || [NSNull null] == JSONToMap)
@@ -219,20 +217,20 @@
         }
     }
     
-    [self mapDictionary:JSONToMap toObject:object withMapping:mapping];
+    [self mapDictionary:JSONToMap toObject:object withMapping:mapping userInfo:userInfo];
     
     return object;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass {
-    return [self objectFromJSON:JSON withObjectClass:objectClass existingObject:nil];
+- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass userInfo:(id)userInfo {
+    return [self objectFromJSON:JSON withObjectClass:objectClass existingObject:nil userInfo:userInfo];
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass existingObject:(id)object {
+- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass existingObject:(id)object userInfo:(id)userInfo {
     NSString *objectName = NSStringFromClass(objectClass);
     BWObjectMapping *mapping = [self.mappings objectForKey:objectName];
     
@@ -240,24 +238,24 @@
         mapping = [[BWObjectMapping alloc] initWithObjectClass:objectClass];
     }
     
-    return [self objectFromJSON:JSON withMapping:mapping existingObject:object];
+    return [self objectFromJSON:JSON withMapping:mapping existingObject:object userInfo:userInfo];
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectFromJSON:(id)JSON {
-    return [self objectFromJSON:JSON existingObject:nil];
+- (id)objectFromJSON:(id)JSON userInfo:(id)userInfo {
+    return [self objectFromJSON:JSON existingObject:nil userInfo:userInfo];
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectFromJSON:(id)JSON existingObject:(id)object {
+- (id)objectFromJSON:(id)JSON existingObject:(id)object userInfo:(id)userInfo {
     id parsedObject = nil;
     
     for (NSString *key in self.mappings) {
         BWObjectMapping *objectMapping = [self.mappings objectForKey:key];
         if (objectMapping.objectClass == [object class]) {
-            parsedObject = [self objectFromJSON:JSON withMapping:objectMapping existingObject:object];
+            parsedObject = [self objectFromJSON:JSON withMapping:objectMapping existingObject:object userInfo:userInfo];
             
             break;
         }
@@ -272,6 +270,51 @@
     [self.defaultMappings setObject:keyPath forKey:attribute];
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)objectsFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping {
+    return [self objectsFromJSON:JSON withMapping:mapping userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)objectsFromJSON:(id)JSON withObjectClass:(Class)objectClass {
+    return [self objectsFromJSON:JSON withObjectClass:objectClass userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)objectsFromJSON:(id)JSON {
+    return [self objectsFromJSON:JSON userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping {
+    return [self objectFromJSON:JSON withMapping:mapping userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping existingObject:(id)object {
+    return [self objectFromJSON:JSON withMapping:mapping existingObject:object userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass {
+    return [self objectFromJSON:JSON withObjectClass:objectClass userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)objectFromJSON:(id)JSON withObjectClass:(Class)objectClass existingObject:(id)object {
+    return [self objectFromJSON:JSON withObjectClass:objectClass existingObject:object userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)objectFromJSON:(id)JSON {
+    return [self objectsFromJSON:JSON userInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)objectFromJSON:(id)JSON existingObject:(id)object {
+    return [self objectFromJSON:JSON existingObject:object userInfo:nil];
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -280,7 +323,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping {
+- (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping  userInfo:userInfo {
     for (NSString *key in mapping.attributeMappings) {
         BWObjectAttributeMapping *attributeMapping = [mapping.attributeMappings objectForKey:key];
         [[BWObjectValueMapper shared] setValue:[dict valueForKeyPath:attributeMapping.keyPath]
@@ -300,11 +343,11 @@
         
         if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
             result = [self objectFromJSON:relationJSON
-                              withMapping:relationObjectMapping.objectMapping];
+                              withMapping:relationObjectMapping.objectMapping userInfo:userInfo];
             
         } else if (nil != relationObjectMapping.objectMappingClass && [NSNull null] != relationJSON) {
             result = [self objectFromJSON:relationJSON
-                          withObjectClass:relationObjectMapping.objectMappingClass];
+                          withObjectClass:relationObjectMapping.objectMappingClass  userInfo:userInfo];
         }
         
         if (nil != relationObjectMapping.valueBlock) {
@@ -325,11 +368,11 @@
         
         if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
             result = [self objectsFromJSON:relationJSON
-                               withMapping:relationObjectMapping.objectMapping];
+                               withMapping:relationObjectMapping.objectMapping  userInfo:userInfo];
             
         } else if (nil != relationObjectMapping.objectMappingClass && [NSNull null] != relationJSON) {
             result = [self objectsFromJSON:relationJSON
-                           withObjectClass:relationObjectMapping.objectMappingClass];
+                           withObjectClass:relationObjectMapping.objectMappingClass  userInfo:userInfo];
         }
         
         if (nil != relationObjectMapping.valueBlock) {
