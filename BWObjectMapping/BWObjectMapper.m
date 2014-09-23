@@ -96,7 +96,25 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerMappingForClass:(Class)klass withRootKeyPath:(NSString *)keyPath {
-    [self registerMapping:[[BWObjectMapping alloc] initWithObjectClass:klass]
+    [self registerMappingForClass:klass withRootKeyPath:keyPath mapping:nil];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerMappingForClass:(Class)klass mapping:(BWObjectMappingMappingBlock)mappingBlock {
+    [self registerMappingForClass:klass withRootKeyPath:nil mapping:mappingBlock];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerMappingForClass:(Class)klass withRootKeyPath:(NSString *)keyPath mapping:(BWObjectMappingMappingBlock)mappingBlock {
+    BWObjectMapping *mapping = [[BWObjectMapping alloc] initWithObjectClass:klass];
+    
+    if (mappingBlock) {
+        mappingBlock(mapping);
+    }
+    
+    [self registerMapping:mapping
           withRootKeyPath:keyPath];
 }
 

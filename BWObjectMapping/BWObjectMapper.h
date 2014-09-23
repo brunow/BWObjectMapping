@@ -43,6 +43,10 @@
 
 - (void)registerMappingForClass:(Class)klass;
 
+- (void)registerMappingForClass:(Class)klass mapping:(BWObjectMappingMappingBlock)mappingBlock;
+
+- (void)registerMappingForClass:(Class)klass withRootKeyPath:(NSString *)keyPath mapping:(BWObjectMappingMappingBlock)mappingBlock;
+
 - (void)registerMappingForClass:(Class)klass withRootKeyPath:(NSString *)keyPath;
 
 - (void)registerMapping:(BWObjectMapping *)mapping withRootKeyPath:(NSString *)keyPath;
