@@ -231,7 +231,7 @@
         if (nil == self.objectBlock) {
             object = [[mapping.objectClass alloc] init];
         } else {
-            object = self.objectBlock(mapping.objectClass, primaryKey, primaryKeyValue, JSONToMap, self.objectWithBlockUserInfo);
+            object = self.objectBlock(mapping.objectClass, primaryKey, primaryKeyValue, JSONToMap, userInfo);
         }
     }
     
