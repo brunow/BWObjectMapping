@@ -278,6 +278,8 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
         i++;
     }
     
+    free(attributes);
+    
     if ([attributeType length] > 3) {
         NSString *propertyType = [attributeType substringWithRange:NSMakeRange(2, attributeType.length-3)];
         [[self cache] setObject:propertyType forKey:cacheKey];
