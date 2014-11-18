@@ -27,7 +27,7 @@
 @property (nonatomic, copy) BWObjectMappingObjectBlock objectBlock;
 @property (nonatomic, copy) NSString *defaultDateFormat;
 @property (nonatomic, copy) BWObjectMappingObjectDidMapObjectBlock didMapObjectBlock;
-@property (nonatomic, assign) NSInteger timeZoneForSecondsFromGMT;
+@property (nonatomic, strong) NSTimeZone *timeZone;
 @property (nonatomic, strong) NSMutableDictionary *defaultMappings;
 
 + (BWObjectMapper *)shared;

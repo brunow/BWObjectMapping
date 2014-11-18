@@ -216,13 +216,18 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
         dateFormat = [[BWObjectMapper shared] defaultDateFormat];
     }
     
-    NSString *dateformaterKey = [NSString stringWithFormat:@"dateFormatter-%ld-%@", (long)[BWObjectMapper shared].timeZoneForSecondsFromGMT, dateFormat];
+    NSString *dateformaterKey = [NSString stringWithFormat:@"dateFormatter-%@", dateFormat];
+    
+    if ([BWObjectMapper shared].timeZone) {
+        dateformaterKey = [dateformaterKey stringByAppendingFormat:@"-%@", [BWObjectMapper shared].timeZone.name];
+    }
     
     NSDateFormatter *dateFormatter = [[self cache] objectForKey:dateformaterKey];
     if (nil == dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[BWObjectMapper shared].timeZoneForSecondsFromGMT];
-        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        if ([BWObjectMapper shared].timeZone) {
+            dateFormatter.timeZone = [BWObjectMapper shared].timeZone;
+        }
         [dateFormatter setDateFormat:dateFormat];
         [[self cache] setObject:dateFormatter forKey:dateformaterKey];
     }

@@ -63,8 +63,7 @@
     if (self) {
         self.mutableMappings = [NSMutableDictionary dictionary];
         self.defaultMappings = [NSMutableDictionary dictionary];
-        self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-        self.timeZoneForSecondsFromGMT = 0;
+        self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ";
     }
     return self;
 }
