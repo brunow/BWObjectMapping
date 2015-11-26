@@ -1,0 +1,1 @@
+../../../../../BWObjectMapping/BWObjectRelationAttributeMapping.h

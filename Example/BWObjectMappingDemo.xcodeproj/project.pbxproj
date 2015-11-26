@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D7B9E5CA1CA2BDC0CAED0D6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D21E66F63AE33BD7CFD1D2 /* libPods.a */; };
 		C69C256616D453140008038E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C69C256516D453140008038E /* Default-568h@2x.png */; };
 		C69C256916D4534E0008038E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256816D4534E0008038E /* Person.m */; };
 		C69C256C16D466B40008038E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256B16D466B40008038E /* Car.m */; };
@@ -14,10 +15,7 @@
 		C69C257116D471370008038E /* BWObjectMappingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257016D471370008038E /* BWObjectMappingSpec.m */; };
 		C69C257416D4729A0008038E /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257316D4729A0008038E /* MappingProvider.m */; };
 		C69C257916D4FAA30008038E /* Wheel.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C257816D4FAA30008038E /* Wheel.m */; };
-		E7018D4E15C6492600D3ADEE /* BWObjectValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */; };
 		E7018D5515C65FB000D3ADEE /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7018D5415C65FB000D3ADEE /* Entity.m */; };
-		E75E88F516F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */; };
-		E79D42D716F8DDC300F4FEA9 /* NSString+BWObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E79D42D616F8DDC300F4FEA9 /* NSString+BWObjectMapping.m */; };
 		E79D42DA16F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = E79D42D916F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m */; };
 		E7B6880F15BAA9E700002F08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6880E15BAA9E700002F08 /* UIKit.framework */; };
 		E7B6881115BAA9E700002F08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6881015BAA9E700002F08 /* Foundation.framework */; };
@@ -32,9 +30,6 @@
 		E7B6882E15BAA9E700002F08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6881015BAA9E700002F08 /* Foundation.framework */; };
 		E7B6882F15BAA9E700002F08 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B6881415BAA9E700002F08 /* CoreData.framework */; };
 		E7B6883715BAA9E700002F08 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7B6883515BAA9E700002F08 /* InfoPlist.strings */; };
-		E7B6885B15BAACD600002F08 /* BWObjectAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B6885315BAACD600002F08 /* BWObjectAttributeMapping.m */; };
-		E7B6885C15BAACD600002F08 /* BWObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B6885515BAACD600002F08 /* BWObjectMapper.m */; };
-		E7B6885D15BAACD600002F08 /* BWObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B6885715BAACD600002F08 /* BWObjectMapping.m */; };
 		E7B689FE15BAB5C700002F08 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B689FD15BAB5C700002F08 /* libKiwi.a */; };
 		E7B68A0015BAB69000002F08 /* BWObjectMapperSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B689FF15BAB69000002F08 /* BWObjectMapperSpecs.m */; };
 		E7B68A0D15BC5DC900002F08 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B68A0C15BC5DC900002F08 /* Comment.m */; };
@@ -52,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C0B7CAF967332D4AD4E5536 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		63D21E66F63AE33BD7CFD1D2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C69C256516D453140008038E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		C69C256716D4534E0008038E /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		C69C256816D4534E0008038E /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
@@ -64,14 +61,9 @@
 		C69C257316D4729A0008038E /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
 		C69C257716D4FAA30008038E /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
 		C69C257816D4FAA30008038E /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
-		E7018D4C15C6492600D3ADEE /* BWObjectValueMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWObjectValueMapper.h; sourceTree = "<group>"; };
-		E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectValueMapper.m; sourceTree = "<group>"; };
+		CE4B1DA70BD01FCD848B20F4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E7018D5315C65FB000D3ADEE /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		E7018D5415C65FB000D3ADEE /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
-		E75E88F316F5D17F00FDB448 /* BWOjectRelationAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWOjectRelationAttributeMapping.h; sourceTree = "<group>"; };
-		E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWOjectRelationAttributeMapping.m; sourceTree = "<group>"; };
-		E79D42D516F8DDC300F4FEA9 /* NSString+BWObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BWObjectMapping.h"; sourceTree = "<group>"; };
-		E79D42D616F8DDC300F4FEA9 /* NSString+BWObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BWObjectMapping.m"; sourceTree = "<group>"; };
 		E79D42D916F8DE6700F4FEA9 /* BWObjectMappingStringSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectMappingStringSpecs.m; sourceTree = "<group>"; };
 		E7B6880A15BAA9E700002F08 /* BWObjectMappingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BWObjectMappingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B6880E15BAA9E700002F08 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -89,13 +81,6 @@
 		E7B6882B15BAA9E700002F08 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E7B6883415BAA9E700002F08 /* BWObjectMappingDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BWObjectMappingDemoTests-Info.plist"; sourceTree = "<group>"; };
 		E7B6883615BAA9E700002F08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E7B6885215BAACD600002F08 /* BWObjectAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWObjectAttributeMapping.h; sourceTree = "<group>"; };
-		E7B6885315BAACD600002F08 /* BWObjectAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectAttributeMapping.m; sourceTree = "<group>"; };
-		E7B6885415BAACD600002F08 /* BWObjectMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWObjectMapper.h; sourceTree = "<group>"; };
-		E7B6885515BAACD600002F08 /* BWObjectMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectMapper.m; sourceTree = "<group>"; };
-		E7B6885615BAACD600002F08 /* BWObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWObjectMapping.h; sourceTree = "<group>"; };
-		E7B6885715BAACD600002F08 /* BWObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectMapping.m; sourceTree = "<group>"; };
-		E7B6885815BAACD600002F08 /* BWObjectMappingBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWObjectMappingBlocks.h; sourceTree = "<group>"; };
 		E7B689FD15BAB5C700002F08 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../dev/xcodeBuilds/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		E7B689FF15BAB69000002F08 /* BWObjectMapperSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWObjectMapperSpecs.m; sourceTree = "<group>"; };
 		E7B68A0B15BC5DC900002F08 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = BWObjectMappingDemo/Comment.h; sourceTree = SOURCE_ROOT; };
@@ -113,6 +98,7 @@
 				E7B6881115BAA9E700002F08 /* Foundation.framework in Frameworks */,
 				E7B6881315BAA9E700002F08 /* CoreGraphics.framework in Frameworks */,
 				E7B6881515BAA9E700002F08 /* CoreData.framework in Frameworks */,
+				0D7B9E5CA1CA2BDC0CAED0D6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,14 +117,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB2006F0F8FB650B65118709 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B1DA70BD01FCD848B20F4 /* Pods.debug.xcconfig */,
+				4C0B7CAF967332D4AD4E5536 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E7B687FF15BAA9E700002F08 = {
 			isa = PBXGroup;
 			children = (
-				E7B6885115BAACD600002F08 /* BWObjectMapping */,
 				E7B6881615BAA9E700002F08 /* BWObjectMappingDemo */,
 				E7B6883215BAA9E700002F08 /* BWObjectMappingDemoTests */,
 				E7B6880D15BAA9E700002F08 /* Frameworks */,
 				E7B6880B15BAA9E700002F08 /* Products */,
+				BB2006F0F8FB650B65118709 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +155,7 @@
 				E7B6881215BAA9E700002F08 /* CoreGraphics.framework */,
 				E7B6881415BAA9E700002F08 /* CoreData.framework */,
 				E7B6882B15BAA9E700002F08 /* SenTestingKit.framework */,
+				63D21E66F63AE33BD7CFD1D2 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,26 +219,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E7B6885115BAACD600002F08 /* BWObjectMapping */ = {
-			isa = PBXGroup;
-			children = (
-				E7B6885215BAACD600002F08 /* BWObjectAttributeMapping.h */,
-				E7B6885315BAACD600002F08 /* BWObjectAttributeMapping.m */,
-				E7B6885415BAACD600002F08 /* BWObjectMapper.h */,
-				E7B6885515BAACD600002F08 /* BWObjectMapper.m */,
-				E7B6885615BAACD600002F08 /* BWObjectMapping.h */,
-				E7B6885715BAACD600002F08 /* BWObjectMapping.m */,
-				E7B6885815BAACD600002F08 /* BWObjectMappingBlocks.h */,
-				E7018D4C15C6492600D3ADEE /* BWObjectValueMapper.h */,
-				E7018D4D15C6492600D3ADEE /* BWObjectValueMapper.m */,
-				E75E88F316F5D17F00FDB448 /* BWOjectRelationAttributeMapping.h */,
-				E75E88F416F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m */,
-				E79D42D516F8DDC300F4FEA9 /* NSString+BWObjectMapping.h */,
-				E79D42D616F8DDC300F4FEA9 /* NSString+BWObjectMapping.m */,
-			);
-			path = BWObjectMapping;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,9 +226,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7B6883D15BAA9E700002F08 /* Build configuration list for PBXNativeTarget "BWObjectMappingDemo" */;
 			buildPhases = (
+				F74A3C81309756DB09341F1B /* Check Pods Manifest.lock */,
 				E7B6880615BAA9E700002F08 /* Sources */,
 				E7B6880715BAA9E700002F08 /* Frameworks */,
 				E7B6880815BAA9E700002F08 /* Resources */,
+				49DFBFA4D65E29C7FD141A8D /* Embed Pods Frameworks */,
+				54B2A4E8A949B17F2C04D26C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -288,7 +267,8 @@
 		E7B6880115BAA9E700002F08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastTestingUpgradeCheck = 0710;
+				LastUpgradeCheck = 0710;
 			};
 			buildConfigurationList = E7B6880415BAA9E700002F08 /* Build configuration list for PBXProject "BWObjectMappingDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -329,6 +309,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		49DFBFA4D65E29C7FD141A8D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54B2A4E8A949B17F2C04D26C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E7B6882815BAA9E700002F08 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,6 +352,21 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		F74A3C81309756DB09341F1B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -352,20 +377,14 @@
 				E7B6881D15BAA9E700002F08 /* main.m in Sources */,
 				E7B6882115BAA9E700002F08 /* AppDelegate.m in Sources */,
 				E7B6882415BAA9E700002F08 /* BWObjectMappingDemo.xcdatamodeld in Sources */,
-				E7B6885B15BAACD600002F08 /* BWObjectAttributeMapping.m in Sources */,
-				E7B6885C15BAACD600002F08 /* BWObjectMapper.m in Sources */,
-				E7B6885D15BAACD600002F08 /* BWObjectMapping.m in Sources */,
 				E7B68A0D15BC5DC900002F08 /* Comment.m in Sources */,
 				E7B68A2A15BC98A100002F08 /* User.m in Sources */,
-				E7018D4E15C6492600D3ADEE /* BWObjectValueMapper.m in Sources */,
 				E7018D5515C65FB000D3ADEE /* Entity.m in Sources */,
 				C69C256916D4534E0008038E /* Person.m in Sources */,
 				C69C256C16D466B40008038E /* Car.m in Sources */,
 				C69C256F16D46BA00008038E /* Engine.m in Sources */,
 				C69C257416D4729A0008038E /* MappingProvider.m in Sources */,
 				C69C257916D4FAA30008038E /* Wheel.m in Sources */,
-				E75E88F516F5D17F00FDB448 /* BWOjectRelationAttributeMapping.m in Sources */,
-				E79D42D716F8DDC300F4FEA9 /* NSString+BWObjectMapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,8 +443,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -462,6 +483,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -479,10 +501,12 @@
 		};
 		E7B6883E15BAA9E700002F08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE4B1DA70BD01FCD848B20F4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BWObjectMappingDemo/BWObjectMappingDemo-Prefix.pch";
 				INFOPLIST_FILE = "BWObjectMappingDemo/BWObjectMappingDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "brunowernimont.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -490,10 +514,12 @@
 		};
 		E7B6883F15BAA9E700002F08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C0B7CAF967332D4AD4E5536 /* Pods.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BWObjectMappingDemo/BWObjectMappingDemo-Prefix.pch";
 				INFOPLIST_FILE = "BWObjectMappingDemo/BWObjectMappingDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "brunowernimont.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -514,6 +540,7 @@
 					"-ObjC",
 					"-all_load",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "brunowernimont.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Kiwi/**";
@@ -536,6 +563,7 @@
 					"-ObjC",
 					"-all_load",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "brunowernimont.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				USER_HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/Kiwi/**";

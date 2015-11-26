@@ -1,0 +1,20 @@
+{
+  "name": "BWObjectMapping",
+  "version": "0.4.4",
+  "summary": "Small library that parse JSON and map it to any object, works with NSManagedObject.",
+  "homepage": "https://github.com/brunow/BWObjectMapping",
+  "license": "Apache License 2.0",
+  "authors": {
+    "Bruno Wernimont": "hello@brunowernimont.be"
+  },
+  "source": {
+    "git": "https://github.com/brunow/BWObjectMapping.git",
+    "tag": "0.4.4"
+  },
+  "platforms": {
+    "ios": "5.0"
+  },
+  "source_files": "BWObjectMapping/*.{h,m}",
+  "requires_arc": true,
+  "frameworks": "CoreData"
+}

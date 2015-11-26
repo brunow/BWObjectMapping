@@ -1,0 +1,343 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E7C669E81C07099E00F2CA2B /* BWObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669E71C07099E00F2CA2B /* BWObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7C669FE1C0709D100F2CA2B /* BWObjectAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669EF1C0709D100F2CA2B /* BWObjectAttributeMapping.h */; };
+		E7C669FF1C0709D100F2CA2B /* BWObjectMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669F01C0709D100F2CA2B /* BWObjectMapper.h */; };
+		E7C66A001C0709D100F2CA2B /* BWObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669F11C0709D100F2CA2B /* BWObjectMapping.h */; };
+		E7C66A011C0709D100F2CA2B /* BWObjectMappingBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669F21C0709D100F2CA2B /* BWObjectMappingBlocks.h */; };
+		E7C66A021C0709D100F2CA2B /* BWObjectRelationAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669F31C0709D100F2CA2B /* BWObjectRelationAttributeMapping.h */; };
+		E7C66A031C0709D100F2CA2B /* BWObjectValueMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669F41C0709D100F2CA2B /* BWObjectValueMapper.h */; };
+		E7C66A041C0709D100F2CA2B /* BWOjectRelationAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669F51C0709D100F2CA2B /* BWOjectRelationAttributeMapping.h */; };
+		E7C66A051C0709D100F2CA2B /* NSString+BWObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = E7C669F61C0709D100F2CA2B /* NSString+BWObjectMapping.h */; };
+		E7C66A061C0709D100F2CA2B /* BWObjectAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C669F71C0709D100F2CA2B /* BWObjectAttributeMapping.m */; };
+		E7C66A071C0709D100F2CA2B /* BWObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C669F81C0709D100F2CA2B /* BWObjectMapper.m */; };
+		E7C66A081C0709D100F2CA2B /* BWObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C669F91C0709D100F2CA2B /* BWObjectMapping.m */; };
+		E7C66A091C0709D100F2CA2B /* BWObjectRelationAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C669FA1C0709D100F2CA2B /* BWObjectRelationAttributeMapping.m */; };
+		E7C66A0A1C0709D100F2CA2B /* BWObjectValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C669FB1C0709D100F2CA2B /* BWObjectValueMapper.m */; };
+		E7C66A0B1C0709D100F2CA2B /* BWOjectRelationAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C669FC1C0709D100F2CA2B /* BWOjectRelationAttributeMapping.m */; };
+		E7C66A0C1C0709D100F2CA2B /* NSString+BWObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C669FD1C0709D100F2CA2B /* NSString+BWObjectMapping.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E7C669E41C07099E00F2CA2B /* BWObjectMapping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BWObjectMapping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7C669E71C07099E00F2CA2B /* BWObjectMapping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BWObjectMapping.h; sourceTree = "<group>"; };
+		E7C669E91C07099E00F2CA2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7C669EF1C0709D100F2CA2B /* BWObjectAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWObjectAttributeMapping.h; path = ../../BWObjectMapping/BWObjectAttributeMapping.h; sourceTree = "<group>"; };
+		E7C669F01C0709D100F2CA2B /* BWObjectMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWObjectMapper.h; path = ../../BWObjectMapping/BWObjectMapper.h; sourceTree = "<group>"; };
+		E7C669F11C0709D100F2CA2B /* BWObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWObjectMapping.h; path = ../../BWObjectMapping/BWObjectMapping.h; sourceTree = "<group>"; };
+		E7C669F21C0709D100F2CA2B /* BWObjectMappingBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWObjectMappingBlocks.h; path = ../../BWObjectMapping/BWObjectMappingBlocks.h; sourceTree = "<group>"; };
+		E7C669F31C0709D100F2CA2B /* BWObjectRelationAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWObjectRelationAttributeMapping.h; path = ../../BWObjectMapping/BWObjectRelationAttributeMapping.h; sourceTree = "<group>"; };
+		E7C669F41C0709D100F2CA2B /* BWObjectValueMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWObjectValueMapper.h; path = ../../BWObjectMapping/BWObjectValueMapper.h; sourceTree = "<group>"; };
+		E7C669F51C0709D100F2CA2B /* BWOjectRelationAttributeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWOjectRelationAttributeMapping.h; path = ../../BWObjectMapping/BWOjectRelationAttributeMapping.h; sourceTree = "<group>"; };
+		E7C669F61C0709D100F2CA2B /* NSString+BWObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+BWObjectMapping.h"; path = "../../BWObjectMapping/NSString+BWObjectMapping.h"; sourceTree = "<group>"; };
+		E7C669F71C0709D100F2CA2B /* BWObjectAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWObjectAttributeMapping.m; path = ../../BWObjectMapping/BWObjectAttributeMapping.m; sourceTree = "<group>"; };
+		E7C669F81C0709D100F2CA2B /* BWObjectMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWObjectMapper.m; path = ../../BWObjectMapping/BWObjectMapper.m; sourceTree = "<group>"; };
+		E7C669F91C0709D100F2CA2B /* BWObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWObjectMapping.m; path = ../../BWObjectMapping/BWObjectMapping.m; sourceTree = "<group>"; };
+		E7C669FA1C0709D100F2CA2B /* BWObjectRelationAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWObjectRelationAttributeMapping.m; path = ../../BWObjectMapping/BWObjectRelationAttributeMapping.m; sourceTree = "<group>"; };
+		E7C669FB1C0709D100F2CA2B /* BWObjectValueMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWObjectValueMapper.m; path = ../../BWObjectMapping/BWObjectValueMapper.m; sourceTree = "<group>"; };
+		E7C669FC1C0709D100F2CA2B /* BWOjectRelationAttributeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWOjectRelationAttributeMapping.m; path = ../../BWObjectMapping/BWOjectRelationAttributeMapping.m; sourceTree = "<group>"; };
+		E7C669FD1C0709D100F2CA2B /* NSString+BWObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+BWObjectMapping.m"; path = "../../BWObjectMapping/NSString+BWObjectMapping.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7C669E01C07099E00F2CA2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E7C669DA1C07099E00F2CA2B = {
+			isa = PBXGroup;
+			children = (
+				E7C669E61C07099E00F2CA2B /* BWObjectMapping */,
+				E7C669E51C07099E00F2CA2B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E7C669E51C07099E00F2CA2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7C669E41C07099E00F2CA2B /* BWObjectMapping.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7C669E61C07099E00F2CA2B /* BWObjectMapping */ = {
+			isa = PBXGroup;
+			children = (
+				E7C669EF1C0709D100F2CA2B /* BWObjectAttributeMapping.h */,
+				E7C669F01C0709D100F2CA2B /* BWObjectMapper.h */,
+				E7C669F11C0709D100F2CA2B /* BWObjectMapping.h */,
+				E7C669F21C0709D100F2CA2B /* BWObjectMappingBlocks.h */,
+				E7C669F31C0709D100F2CA2B /* BWObjectRelationAttributeMapping.h */,
+				E7C669F41C0709D100F2CA2B /* BWObjectValueMapper.h */,
+				E7C669F51C0709D100F2CA2B /* BWOjectRelationAttributeMapping.h */,
+				E7C669F61C0709D100F2CA2B /* NSString+BWObjectMapping.h */,
+				E7C669F71C0709D100F2CA2B /* BWObjectAttributeMapping.m */,
+				E7C669F81C0709D100F2CA2B /* BWObjectMapper.m */,
+				E7C669F91C0709D100F2CA2B /* BWObjectMapping.m */,
+				E7C669FA1C0709D100F2CA2B /* BWObjectRelationAttributeMapping.m */,
+				E7C669FB1C0709D100F2CA2B /* BWObjectValueMapper.m */,
+				E7C669FC1C0709D100F2CA2B /* BWOjectRelationAttributeMapping.m */,
+				E7C669FD1C0709D100F2CA2B /* NSString+BWObjectMapping.m */,
+				E7C669E71C07099E00F2CA2B /* BWObjectMapping.h */,
+				E7C669E91C07099E00F2CA2B /* Info.plist */,
+			);
+			path = BWObjectMapping;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E7C669E11C07099E00F2CA2B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7C66A011C0709D100F2CA2B /* BWObjectMappingBlocks.h in Headers */,
+				E7C66A051C0709D100F2CA2B /* NSString+BWObjectMapping.h in Headers */,
+				E7C66A041C0709D100F2CA2B /* BWOjectRelationAttributeMapping.h in Headers */,
+				E7C669FF1C0709D100F2CA2B /* BWObjectMapper.h in Headers */,
+				E7C669FE1C0709D100F2CA2B /* BWObjectAttributeMapping.h in Headers */,
+				E7C669E81C07099E00F2CA2B /* BWObjectMapping.h in Headers */,
+				E7C66A021C0709D100F2CA2B /* BWObjectRelationAttributeMapping.h in Headers */,
+				E7C66A031C0709D100F2CA2B /* BWObjectValueMapper.h in Headers */,
+				E7C66A001C0709D100F2CA2B /* BWObjectMapping.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E7C669E31C07099E00F2CA2B /* BWObjectMapping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7C669EC1C07099E00F2CA2B /* Build configuration list for PBXNativeTarget "BWObjectMapping" */;
+			buildPhases = (
+				E7C669DF1C07099E00F2CA2B /* Sources */,
+				E7C669E01C07099E00F2CA2B /* Frameworks */,
+				E7C669E11C07099E00F2CA2B /* Headers */,
+				E7C669E21C07099E00F2CA2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BWObjectMapping;
+			productName = BWObjectMapping;
+			productReference = E7C669E41C07099E00F2CA2B /* BWObjectMapping.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7C669DB1C07099E00F2CA2B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = Brunow;
+				TargetAttributes = {
+					E7C669E31C07099E00F2CA2B = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = E7C669DE1C07099E00F2CA2B /* Build configuration list for PBXProject "BWObjectMapping" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E7C669DA1C07099E00F2CA2B;
+			productRefGroup = E7C669E51C07099E00F2CA2B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E7C669E31C07099E00F2CA2B /* BWObjectMapping */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E7C669E21C07099E00F2CA2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7C669DF1C07099E00F2CA2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7C66A0B1C0709D100F2CA2B /* BWOjectRelationAttributeMapping.m in Sources */,
+				E7C66A0C1C0709D100F2CA2B /* NSString+BWObjectMapping.m in Sources */,
+				E7C66A071C0709D100F2CA2B /* BWObjectMapper.m in Sources */,
+				E7C66A061C0709D100F2CA2B /* BWObjectAttributeMapping.m in Sources */,
+				E7C66A081C0709D100F2CA2B /* BWObjectMapping.m in Sources */,
+				E7C66A091C0709D100F2CA2B /* BWObjectRelationAttributeMapping.m in Sources */,
+				E7C66A0A1C0709D100F2CA2B /* BWObjectValueMapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E7C669EA1C07099E00F2CA2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E7C669EB1C07099E00F2CA2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E7C669ED1C07099E00F2CA2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BWObjectMapping/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = bw.BWObjectMapping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E7C669EE1C07099E00F2CA2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BWObjectMapping/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = bw.BWObjectMapping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E7C669DE1C07099E00F2CA2B /* Build configuration list for PBXProject "BWObjectMapping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7C669EA1C07099E00F2CA2B /* Debug */,
+				E7C669EB1C07099E00F2CA2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7C669EC1C07099E00F2CA2B /* Build configuration list for PBXNativeTarget "BWObjectMapping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7C669ED1C07099E00F2CA2B /* Debug */,
+				E7C669EE1C07099E00F2CA2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E7C669DB1C07099E00F2CA2B /* Project object */;
+}
