@@ -245,12 +245,14 @@ Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingP
 ```
 
 ## Installation
-
+### Manual
 **Copy BWObjectMapper dir** into your **project**.
 
-Or with **CocoaPods**
-
+### CocoaPods
     pod 'BWObjectMapping', :git => "https://github.com/brunow/BWObjectMapping.git", :tag => "0.4.4"
+    
+### Carthage
+	github "brunow/BWObjectMapping" ~> 0.5.1
 
 ## ARC
 
