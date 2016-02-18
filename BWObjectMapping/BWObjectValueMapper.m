@@ -56,6 +56,10 @@ withAttributeMapping:(BWObjectAttributeMapping *)attributeMapping
         return;
     }
     
+    if (![object respondsToSelector:NSSelectorFromString(keyPath)]) {
+        return;
+    }
+    
     id transformedValue = value;
     
     if ([NSNull class] == [transformedValue class]) {
