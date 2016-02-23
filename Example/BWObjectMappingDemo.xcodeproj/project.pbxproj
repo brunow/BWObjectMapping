@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D7B9E5CA1CA2BDC0CAED0D6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D21E66F63AE33BD7CFD1D2 /* libPods.a */; };
+		56BA4E31E785CB291EC684EA /* libPods-BWObjectMappingDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1A398108AF0F3213983A86 /* libPods-BWObjectMappingDemo.a */; };
 		C69C256616D453140008038E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C69C256516D453140008038E /* Default-568h@2x.png */; };
 		C69C256916D4534E0008038E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256816D4534E0008038E /* Person.m */; };
 		C69C256C16D466B40008038E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = C69C256B16D466B40008038E /* Car.m */; };
@@ -47,8 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BDDD2EC4CA91C1767428520 /* Pods-BWObjectMappingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BWObjectMappingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BWObjectMappingDemo/Pods-BWObjectMappingDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		4C0B7CAF967332D4AD4E5536 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		63D21E66F63AE33BD7CFD1D2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F538845F46F0BB8BFD2F69 /* Pods-BWObjectMappingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BWObjectMappingDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BWObjectMappingDemo/Pods-BWObjectMappingDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C69C256516D453140008038E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		C69C256716D4534E0008038E /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		C69C256816D4534E0008038E /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		C69C257316D4729A0008038E /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
 		C69C257716D4FAA30008038E /* Wheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wheel.h; sourceTree = "<group>"; };
 		C69C257816D4FAA30008038E /* Wheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wheel.m; sourceTree = "<group>"; };
+		CE1A398108AF0F3213983A86 /* libPods-BWObjectMappingDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BWObjectMappingDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4B1DA70BD01FCD848B20F4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E7018D5315C65FB000D3ADEE /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		E7018D5415C65FB000D3ADEE /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
@@ -98,7 +101,7 @@
 				E7B6881115BAA9E700002F08 /* Foundation.framework in Frameworks */,
 				E7B6881315BAA9E700002F08 /* CoreGraphics.framework in Frameworks */,
 				E7B6881515BAA9E700002F08 /* CoreData.framework in Frameworks */,
-				0D7B9E5CA1CA2BDC0CAED0D6 /* libPods.a in Frameworks */,
+				56BA4E31E785CB291EC684EA /* libPods-BWObjectMappingDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +125,8 @@
 			children = (
 				CE4B1DA70BD01FCD848B20F4 /* Pods.debug.xcconfig */,
 				4C0B7CAF967332D4AD4E5536 /* Pods.release.xcconfig */,
+				2BDDD2EC4CA91C1767428520 /* Pods-BWObjectMappingDemo.debug.xcconfig */,
+				A1F538845F46F0BB8BFD2F69 /* Pods-BWObjectMappingDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				E7B6881415BAA9E700002F08 /* CoreData.framework */,
 				E7B6882B15BAA9E700002F08 /* SenTestingKit.framework */,
 				63D21E66F63AE33BD7CFD1D2 /* libPods.a */,
+				CE1A398108AF0F3213983A86 /* libPods-BWObjectMappingDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,7 +327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BWObjectMappingDemo/Pods-BWObjectMappingDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		54B2A4E8A949B17F2C04D26C /* Copy Pods Resources */ = {
@@ -336,7 +342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BWObjectMappingDemo/Pods-BWObjectMappingDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7B6882815BAA9E700002F08 /* ShellScript */ = {
@@ -460,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -491,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -501,11 +507,12 @@
 		};
 		E7B6883E15BAA9E700002F08 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE4B1DA70BD01FCD848B20F4 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 2BDDD2EC4CA91C1767428520 /* Pods-BWObjectMappingDemo.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BWObjectMappingDemo/BWObjectMappingDemo-Prefix.pch";
 				INFOPLIST_FILE = "BWObjectMappingDemo/BWObjectMappingDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "brunowernimont.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -514,11 +521,12 @@
 		};
 		E7B6883F15BAA9E700002F08 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C0B7CAF967332D4AD4E5536 /* Pods.release.xcconfig */;
+			baseConfigurationReference = A1F538845F46F0BB8BFD2F69 /* Pods-BWObjectMappingDemo.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BWObjectMappingDemo/BWObjectMappingDemo-Prefix.pch";
 				INFOPLIST_FILE = "BWObjectMappingDemo/BWObjectMappingDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "brunowernimont.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

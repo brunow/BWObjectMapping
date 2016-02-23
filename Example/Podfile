@@ -1,3 +1,5 @@
 platform :ios, '8.0'
 
-pod 'BWObjectMapping', :path => '../'
+target "BWObjectMappingDemo" do
+  pod 'BWObjectMapping', :path => '../'
+end
