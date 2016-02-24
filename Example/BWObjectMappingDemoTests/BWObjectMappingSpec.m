@@ -8,7 +8,7 @@
 
 #import "BWObjectMapping.h"
 #import "MappingProvider.h"
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 
 
 SPEC_BEGIN(BWObjectMappingSpec)

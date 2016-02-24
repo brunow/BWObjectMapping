@@ -1,4 +1,4 @@
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "NSString+BWObjectMapping.h"
 
 SPEC_BEGIN(BWObjectMappingStringSpecs)

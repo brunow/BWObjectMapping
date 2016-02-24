@@ -17,3 +17,5 @@ project.xcworkspace
 *.DS_Store
 *.swp
 *.out
+Example/Pods
+Example/BWObjectMappingDemo.xcworkspace
