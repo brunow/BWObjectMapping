@@ -205,9 +205,9 @@ describe(@"mapping", ^{
         
         it(@"should map date", ^{
             NSDictionary *userDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      @"1981-10-23T07:45:00Z", @"created_at",
+                                      @"1981-10-23T07:45:00.000Z", @"created_at",
                                       nil];
-            
+
             User *user = [[BWObjectMapper shared] objectFromJSON:userDict withObjectClass:[User class]];
             
             NSDate *expectedDate = [NSDate dateWithTimeIntervalSince1970:372671100];
