@@ -218,13 +218,24 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectFromJSON:(id)JSON withMapping:(BWObjectMapping *)mapping existingObject:(id)object userInfo:(id)userInfo {
-    id JSONToMap = [JSON objectForKey:mapping.rootKeyPath];
+    id JSONToMap = JSON;
+    
+    if ([JSON isKindOfClass:[NSDictionary class]]) {
+        JSONToMap = [JSON objectForKey:mapping.rootKeyPath];
+    }
     
     if (nil == JSONToMap || [NSNull null] == JSONToMap)
         JSONToMap = JSON;
     
     NSString *primaryKey = mapping.primaryKeyAttribute.attribute;
-    id primaryKeyValue = [JSONToMap objectForKey:mapping.primaryKeyAttribute.keyPath];
+    id primaryKeyValue = nil;
+    
+    if ([JSON isKindOfClass:[NSDictionary class]]) {
+        primaryKeyValue = [JSONToMap objectForKey:mapping.primaryKeyAttribute.keyPath];
+        
+    } else if ([self isValueClassPotentialPrimaryKey:JSONToMap]) {
+        primaryKeyValue = JSONToMap;
+    }
     
     if (nil == object) {
         if (nil == self.objectBlock) {
@@ -340,38 +351,60 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)isValueClassPotentialPrimaryKey:(id)value {
+    return [value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)mapDictionary:(NSDictionary *)dict toObject:(id)object withMapping:(BWObjectMapping *)mapping  userInfo:userInfo {
     for (NSString *key in mapping.attributeMappings) {
         BWObjectAttributeMapping *attributeMapping = [mapping.attributeMappings objectForKey:key];
-        [[BWObjectValueMapper shared] setValue:[dict valueForKeyPath:attributeMapping.keyPath]
+        id value = nil;
+        
+        if ([dict isKindOfClass:[NSDictionary class]] && [dict respondsToSelector:@selector(valueForKeyPath:)]) {
+            value = [dict valueForKeyPath:attributeMapping.keyPath];
+            
+        } else if ([self isValueClassPotentialPrimaryKey:dict]) {
+            value = dict;
+        }
+        
+        [[BWObjectValueMapper shared] setValue:value
                                     forKeyPath:attributeMapping.attribute
                           withAttributeMapping:attributeMapping
                                      forObject:object];
     }
+    
+//    if ([dict objectForKey:@"engineID"]) {
+//        NSLog(@"%@", dict);
+//    }
+    
     //
     for (NSString *key in mapping.hasOneMappings) {
         BWOjectRelationAttributeMapping *relationObjectMapping = [mapping.hasOneMappings objectForKey:key];
         id result = nil;
         id relationJSON = [dict objectForKey:key];
         
-        if (nil == relationJSON) {
-            break;
-        }
-        
-        if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
-            result = [self objectFromJSON:relationJSON
-                              withMapping:relationObjectMapping.objectMapping userInfo:userInfo];
+        if (nil != relationJSON) {
+            if (nil != relationObjectMapping.objectMapping && [NSNull null] != relationJSON) {
+                result = [self objectFromJSON:relationJSON
+                                  withMapping:relationObjectMapping.objectMapping userInfo:userInfo];
+                
+            } else if (nil != relationObjectMapping.objectMappingClass && [NSNull null] != relationJSON) {
+                result = [self objectFromJSON:relationJSON
+                              withObjectClass:relationObjectMapping.objectMappingClass  userInfo:userInfo];
+            }
             
-        } else if (nil != relationObjectMapping.objectMappingClass && [NSNull null] != relationJSON) {
-            result = [self objectFromJSON:relationJSON
-                          withObjectClass:relationObjectMapping.objectMappingClass  userInfo:userInfo];
+            if (nil != relationObjectMapping.valueBlock) {
+                result = relationObjectMapping.valueBlock(result);
+            }
+            
+//            if ([relationObjectMapping.keyPath isEqualToString:@"engineID"]) {
+//                NSLog(@"%@", dict);
+//            }
+            
+            [object setValue:result forKeyPath:relationObjectMapping.attribute];
         }
-        
-        if (nil != relationObjectMapping.valueBlock) {
-            result = relationObjectMapping.valueBlock(result);
-        }
-        
-        [object setValue:result forKeyPath:relationObjectMapping.attribute];
     }
     //
     for (NSString *key in mapping.hasManyMappings) {

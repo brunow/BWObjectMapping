@@ -486,6 +486,27 @@ describe(@"mapping", ^{
         
     });
     
+    context(@"KeyPath doesn't exist", ^{
+        it(@"should do nothing", ^{
+            NSDictionary *carJSON = @{ @"notExistingKeyPath" : @"HB20" };
+            
+            Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingProvider carMapping]];
+            [[car should] beKindOfClass:[Car class]];
+        });
+    });
+    
+    context(@"Has one relation with id", ^{
+        it(@"should map object relation", ^{
+            NSDictionary *carJSON = @{ @"model" : @"HB20",
+                         @"year" : @"2013",
+                         @"engineID" : @15 };
+            
+            Car *car = [[BWObjectMapper shared] objectFromJSON:carJSON withMapping:[MappingProvider carMapping]];
+            [[car.engine should] beKindOfClass:[Engine class]];
+            [[car.engine.engineID should] equal:@15];
+        });
+    });
+    
     context(@"Has many relation", ^{
         
         __block Car *car;

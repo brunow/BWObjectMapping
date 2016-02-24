@@ -18,6 +18,7 @@
     return [BWObjectMapping mappingForObject:[Car class] block:^(BWObjectMapping *mapping) {
         [mapping mapAttributeFromArray:@[@"model", @"year"]];
         [mapping hasOneWithRelationMapping:[self engineMapping] forKeyPath:@"engine"];
+        [mapping hasOneWithRelationMapping:[self engineMapping] forKeyPath:@"engineID" attribute:@"engine"];
         [mapping hasManyWithRelationMapping:[self wheelMapping] forKeyPath:@"wheels"];
         [mapping hasManyWithRelationMapping:[self wheelMapping] forKeyPath:@"wheelsSet"];
         [mapping hasManyWithRelationMapping:[self wheelMapping] forKeyPath:@"wheelsOrderedSet"];

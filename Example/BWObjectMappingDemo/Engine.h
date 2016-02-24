@@ -10,6 +10,7 @@
 
 @interface Engine : NSObject
 
+@property (nonatomic, copy) NSNumber *engineID;
 @property (nonatomic, copy) NSString *type;
 
 @end
