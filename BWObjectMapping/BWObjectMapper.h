@@ -29,6 +29,7 @@
 @property (nonatomic, copy) BWObjectMappingObjectDidMapObjectBlock didMapObjectBlock;
 @property (nonatomic, strong) NSTimeZone *timeZone;
 @property (nonatomic, strong) NSMutableDictionary *defaultMappings;
+@property (nonatomic, assign, getter=shouldAutomaticallyTransformUnderscoredKeypath) BOOL automaticallyTransformUnderscoredKeypath;
 
 + (BWObjectMapper *)shared;
 

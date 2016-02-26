@@ -64,6 +64,7 @@
         self.mutableMappings = [NSMutableDictionary dictionary];
         self.defaultMappings = [NSMutableDictionary dictionary];
         self.defaultDateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ";
+        self.automaticallyTransformUnderscoredKeypath = YES;
     }
     return self;
 }

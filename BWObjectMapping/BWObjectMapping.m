@@ -126,8 +126,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)mapRailsAttributeFormatFromCoreDataFormatWithArray:(NSArray *)attributes {
     [attributes enumerateObjectsUsingBlock:^(NSString *coreDataAttribute, NSUInteger idx, BOOL *stop) {
-        NSString *railsAttribute = [coreDataAttribute BWO_stringByUnderscoringWord];
-        [self mapKeyPath:railsAttribute toAttribute:coreDataAttribute];
+        NSString *attribute = coreDataAttribute;
+        
+        if ([BWObjectMapper shared].shouldAutomaticallyTransformUnderscoredKeypath) {
+            attribute = [coreDataAttribute BWO_stringByUnderscoringWord];
+        }
+        
+        [self mapKeyPath:attribute toAttribute:coreDataAttribute];
     }];
 }
 
